@@ -1,0 +1,25 @@
+.themes{
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+}
+
+.theme{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 400px;
+    height: 70px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.categoryTitle{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+    text-align: center;
+}
