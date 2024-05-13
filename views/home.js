@@ -10,15 +10,12 @@ kiss.app.defineView({
             id,
             target,
             items: [
-                {
-                    type: 'view',
-                    id: 'topBar',
-
-                },
+                createTopBar('Home'),
                 {
                     class: "category",
                     display: 'flex',
                     alignItems: 'center',
+                    margin : '40px 0',
                     items: [
                         {
                             type: 'text',

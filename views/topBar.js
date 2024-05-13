@@ -1,17 +1,20 @@
-kiss.app.defineView({
-    id: 'topBar',
-    renderer: function (id, target) {
-        return createBlock({
-            id,
-            target,
-            backgroundColor: '#f0f0f0',
-            items: [
-                {
-                    type: 'image',
-                    src: 'resources/img/logo.png',
-                    width: 100,
-                },
-            ]
-        })
-    }
+createTopBar = (test) => createBlock({
+    
+    class: 'topbar',
+    items: [
+        {
+            type: 'image',
+            src: 'resources/img/logo.png',
+            width: 150,
+            events : {
+                click : () => kiss.router.navigateTo('home')
+            }
+        },
+        {
+            class: 'topbar-title',
+            type: 'html',
+            html: test,
+            flex: 1,
+        }
+    ]
 })

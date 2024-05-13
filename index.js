@@ -5,7 +5,30 @@ const cards = ['card 1', 'card 2', 'card 3', 'card 4', 'card 5', 'card 6', 'card
 const themes = ['chat', 'chien', 'cuisine', 'histoire', 'informatique', 'jeux', 'littérature', 'musique', 'nature', 'sciences', 'sport', 'voyages']
 const categories = ['Animaux', 'Art', 'Cuisine', 'Histoire', 'Informatique', 'Jeux', 'Littérature', 'Musique', 'Nature', 'Sciences', 'Sport', 'Voyages']
 
-window.onload = function () {
+window.onload = async function () {
+    // Load the views
+    await kiss.loader.loadScripts([
+        './views/card', 
+        './views/category', 
+        './views/home', 
+        './views/playRecto',
+        './views/playVerso',
+        './views/setting',
+        './views/theme',
+        './views/topBar'
+    ])
+
+    // Load the styles
+    await kiss.loader.loadStyles([
+        './views/card',
+        './views/category',
+        './views/home',
+        './views/play',
+        './views/setting',
+        './views/theme',
+        './views/topBar'
+    ])
+
     kiss.router.init()
     kiss.views.show('home')
 }

@@ -12,11 +12,7 @@ kiss.app.defineView({
             id,
             target,
             items: [
-                {
-                    type: 'view',
-                    id: 'topBar',
-
-                },
+                createTopBar(),
                 {
                     type: 'html',
                     id: 'categoryTitle',
@@ -48,6 +44,7 @@ kiss.app.defineView({
                     html: themesHtml,
                     class: 'themes',
                     id: "themeHtml",
+                    margin : '30px 0px',
 
 
                 },
@@ -56,6 +53,7 @@ kiss.app.defineView({
                     display: "flex",
                     flexFlow: "row",
                     id: "containerButton",
+                    margin: '0px 500px',
                     items: [
 
                     {
@@ -85,7 +83,7 @@ kiss.app.defineView({
                                     const theme = event.target.textContent
                                     console.log(theme)
                                     currentTheme = theme
-                                    kiss.router.navigateTo('play')
+                                    kiss.router.navigateTo('setting')
                                 }
                             
                             },

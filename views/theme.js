@@ -11,11 +11,9 @@ kiss.app.defineView({
         return createBlock({
             id,
             target,
-            items: [{
-                    type: 'view',
-                    id: 'topBar',
-
-                },
+            items: [
+                createTopBar(),
+                
                 {
                     type: 'html',
                     id: 'themeTitle',
