@@ -11,18 +11,16 @@ kiss.app.defineView({
         return createBlock({
             id,
             target,
-            items: [{
-                    type: 'view',
-                    id: 'topBar',
-
-                },
+            items: [
+                createTopBar(),
+                
                 {
                     type: 'html',
                     id: 'themeTitle',
                     class: 'themeTitle',
                 },
                 {
-                    class: "card",
+                    class: "add-card",
                     display: 'flex',
                     alignItems: 'center',
                     items: [{
@@ -35,6 +33,7 @@ kiss.app.defineView({
                             type: 'button',
                             icon: 'fas fa-plus',
                             height: 40,
+
                         }
                     ]
                 },
