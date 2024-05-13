@@ -20,7 +20,7 @@ kiss.app.defineView({
                     class: 'themeTitle',
                 },
                 {
-                    class: "card",
+                    class: "add-card",
                     display: 'flex',
                     alignItems: 'center',
                     items: [{

@@ -1,11 +1,6 @@
 kiss.app.defineView({
     id: 'home',
     renderer: function (id, target) {
-        function createCategory(category) {
-            const html = `<div class="category">${category}</div>`
-            return html
-        }
-        const categoriesHtml = categories.map(createCategory).join('')
         return createBlock({
             id,
             target,
@@ -18,31 +13,35 @@ kiss.app.defineView({
                     margin : '40px 0',
                     items: [
                         {
+                            id: "fieldCategory",
                             type: 'text',
                             label: 'Ajouter une catégorie',
                             labelPosition: 'top',
                             placeholder: 'Exemple : Animaux, Nature, Sciences, etc...',
                             fieldWidth: 300,
-                            id: "fieldTheme",
+                            
                         },
                         {
                             type: 'button',
                             icon: 'fas fa-plus',
                             height: 40,
-                            events: {
-                                onclick: () => {
-                                    const field = document.getElementById("fieldTheme").getValue()
-                                    console.log(field)
-                                    document.getElementById("divAdd").innerHTML += `<div class="category">${field}</div>`
-                                    categories.unshift(field)
+                            action: () => {
+                                const category = $('fieldCategory').getValue()
+                                if (!category) {
+                                    return createNotification('Veuillez saisir une catégorie')
+                                } 
+                                const result = addCategory(category)
+                                if (result == false){
+                                    return createNotification('Cette catégorie existe déjà')
                                 }
+                                $(id).load()
+                                $('fieldCategory').setValue('')
                             }
                         }
                     ]
                 },
                 {
                     type: 'html',
-                    html: categoriesHtml,
                     class: 'categories',
                     id: "divAdd",
                     events: {
@@ -56,7 +55,19 @@ kiss.app.defineView({
                     }
 
                 }
-            ]
+            ],
+            methods: {
+                load: function(){
+                    const categoriesHtml = memory.map(category => $(id).createCategory(category.name)).join('')
+                    const categoriesElement = document.querySelector('.categories')
+                    categoriesElement.setInnerHtml(categoriesHtml) 
+                },
+                createCategory: function(category) {
+                    const html = `<div class="category">${category}</div>`
+                    return html
+                }
+            }
+
 
         })
 
