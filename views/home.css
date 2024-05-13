@@ -1,10 +1,10 @@
-.categories{
+.categories {
     display: flex;
     flex-wrap: wrap;
     flex-flow: row wrap;
 }
 
-.category{
+.category {
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;

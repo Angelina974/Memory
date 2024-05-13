@@ -34,9 +34,5 @@ window.onload = async function () {
     ])
 
     kiss.router.init()
-
-
-
     kiss.views.show('home')
-    // kiss.views.show('card')
 }

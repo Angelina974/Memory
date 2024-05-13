@@ -10,16 +10,14 @@ kiss.app.defineView({
                     class: "category",
                     display: 'flex',
                     alignItems: 'center',
-                    margin : '40px 0',
-                    items: [
-                        {
+                    margin: '40px 10px',
+                    items: [{
                             id: "fieldCategory",
                             type: 'text',
                             label: 'Ajouter une catégorie',
                             labelPosition: 'top',
                             placeholder: 'Exemple : Animaux, Nature, Sciences, etc...',
                             fieldWidth: 300,
-                            
                         },
                         {
                             type: 'button',
@@ -29,9 +27,9 @@ kiss.app.defineView({
                                 const category = $('fieldCategory').getValue()
                                 if (!category) {
                                     return createNotification('Veuillez saisir une catégorie')
-                                } 
+                                }
                                 const result = addCategory(category)
-                                if (result == false){
+                                if (result == false) {
                                     return createNotification('Cette catégorie existe déjà')
                                 }
                                 $(id).load()
@@ -50,26 +48,21 @@ kiss.app.defineView({
                             console.log(category)
                             currentCategory = category
                             kiss.router.navigateTo('category')
-
                         }
                     }
-
                 }
             ],
             methods: {
-                load: function(){
+                load: function () {
                     const categoriesHtml = memory.map(category => $(id).createCategory(category.name)).join('')
                     const categoriesElement = document.querySelector('.categories')
-                    categoriesElement.setInnerHtml(categoriesHtml) 
+                    categoriesElement.setInnerHtml(categoriesHtml)
                 },
-                createCategory: function(category) {
+                createCategory: function (category) {
                     const html = `<div class="category">${category}</div>`
                     return html
                 }
             }
-
-
         })
-
     }
 })

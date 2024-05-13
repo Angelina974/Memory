@@ -22,7 +22,6 @@ kiss.app.defineView({
                             labelPosition: 'top',
                             placeholder: 'Exemple : Animaux, Nature, Sciences, etc...',
                             fieldWidth: 300,
-
                         },
                         {
                             type: 'button',
@@ -40,7 +39,6 @@ kiss.app.defineView({
                                 $(id).load()
                                 $('fieldTheme').setValue('')
                             }
-
                         }
                     ]
                 },
@@ -84,7 +82,6 @@ kiss.app.defineView({
                 },
             ],
 
-
             methods: {
                 load: function () {
                     // Récupère la catégorie actuelle
@@ -116,7 +113,6 @@ kiss.app.defineView({
                                         type: 'html',
                                         html: `<input type="checkbox" class="themeCheckbox" id="${theme}"></input>`
                                     },
-                                    
                                 ]
                             },
                             {
@@ -160,8 +156,6 @@ kiss.app.defineView({
                     })
                 }
             }
-
         })
-
     }
 })
