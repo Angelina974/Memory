@@ -35,6 +35,7 @@ kiss.app.defineView({
                             type: 'button',
                             icon: 'fas fa-plus',
                             height: 40,
+
                         }
                     ]
                 },

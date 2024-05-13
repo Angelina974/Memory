@@ -3,7 +3,7 @@ kiss.app.defineView({
     renderer: function (id, target) {
         function createTheme(theme) {
             const html = `<div class="theme">${theme}
-            <input type="checkbox" class="themeCheckbox"></input>
+            <input type="checkbox" class="themeCheckbox" id="${theme}"></input>
             </div>`
             return html
         }
@@ -33,11 +33,13 @@ kiss.app.defineView({
                             labelPosition: 'top',
                             placeholder: 'Exemple : Animaux, Nature, Sciences, etc...',
                             fieldWidth: 300,
+
                         },
                         {
                             type: 'button',
                             icon: 'fas fa-plus',
                             height: 40,
+
                         }
                     ]
                 },
@@ -45,27 +47,72 @@ kiss.app.defineView({
                     type: 'html',
                     html: themesHtml,
                     class: 'themes',
+                    id: "themeHtml",
+
 
                 },
                 {
-                    type: 'button',
-                    text: 'Supprimer',
-                    icon: 'fas fa-trash',
-                },
-                {
-                    type: 'button',
-                    text: 'Jouer',
-                    icon: 'fas fa-gamepad',
-                }
-            ],
-            events: {
-                click: function (event) {
-                    const theme = event.target.textContent
-                    console.log(theme)
-                    currentTheme = theme
-                    kiss.router.navigateTo('theme')
-                },
+                    type: "block",
+                    display: "flex",
+                    flexFlow: "row",
+                    id: "containerButton",
+                    items: [
+
+                    {
+                        type: 'button',
+                        text: 'Supprimer',
+                        icon: 'fas fa-trash',
+                        events: {
+                            click: function (event) {
+                                const checkedThemes = themes.filter(theme => document.getElementById(theme).checked);
+                                console.log(checkedThemes)
+                                if (checkedThemes.length > 0) {
+                                    
+                                }
+                            
+                            },
+                        },
+                    },
+                    {
+                        type: 'button',
+                        text: 'Jouer',
+                        icon: 'fas fa-gamepad',
+                        events: {
+                            click: function (event) {
+                                const checkedThemes = themes.filter(theme => document.getElementById(theme).checked);
+                                console.log(checkedThemes)
+                                if (checkedThemes.length > 0) {
+                                    const theme = event.target.textContent
+                                    console.log(theme)
+                                    currentTheme = theme
+                                    kiss.router.navigateTo('play')
+                                }
+                            
+                            },
+                        },
+                    },
+                    {
+                        type: 'button',
+                        text: 'Modifier',
+                        icon: 'fas fa-gamepad',
+                        events: {
+                            click: function (event) {
+                                const checkedThemes = themes.filter(theme => document.getElementById(theme).checked);
+                                console.log(checkedThemes)
+                                if (checkedThemes.length > 0) {
+                                    const theme = event.target.textContent
+                                    console.log(theme)
+                                    currentTheme = theme
+                                    kiss.router.navigateTo('theme')
+                                }
+                            
+                            },
+                        },
+                    }
+                ]
             },
+            ],
+
             methods: {
                 load: function () {
                     console.log('Category:', currentCategory)

@@ -26,11 +26,20 @@ kiss.app.defineView({
                             labelPosition: 'top',
                             placeholder: 'Exemple : Animaux, Nature, Sciences, etc...',
                             fieldWidth: 300,
+                            id: "fieldTheme",
                         },
                         {
                             type: 'button',
                             icon: 'fas fa-plus',
                             height: 40,
+                            events: {
+                                onclick: () => {
+                                    const field = document.getElementById("fieldTheme").getValue()
+                                    console.log(field)
+                                    document.getElementById("divAdd").innerHTML += `<div class="category">${field}</div>`
+                                    categories.unshift(field)
+                                }
+                            }
                         }
                     ]
                 },
@@ -38,6 +47,7 @@ kiss.app.defineView({
                     type: 'html',
                     html: categoriesHtml,
                     class: 'categories',
+                    id: "divAdd",
                     events: {
                         click: function (event) {
                             const category = event.target.textContent

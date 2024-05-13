@@ -1,0 +1,44 @@
+.cardPlay {
+    border: 1px solid rgb(166, 172, 177);
+    border-radius: 20px;
+    height: 250px;
+    background-color: white;
+    text-align: center;
+
+}
+
+.cardContainer {
+
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.cardContainer button {
+    color: rgb(197, 197, 197);
+    border: 1px solid rgb(166, 172, 177);
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    font-size: 140%;
+    transition: 0.3s;
+
+}
+.cardContainer button:hover {
+    transition: 0.3s;
+    background-color: rgb(236, 239, 241);
+    cursor: pointer;
+
+}
+
+.cardContainer h3 {
+    color: rgb(197, 197, 197);
+
+}
