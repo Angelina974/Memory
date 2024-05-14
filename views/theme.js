@@ -1,9 +1,8 @@
 kiss.app.defineView({
     id: 'theme',
-    renderer: function (id, target) {
+    renderer: function (id) {
         return createBlock({
             id,
-            target,
             items: [
                 // Top bar
                 createTopBar(),

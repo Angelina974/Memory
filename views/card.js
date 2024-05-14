@@ -1,9 +1,8 @@
 kiss.app.defineView({
     id: 'card',
-    renderer: function (id, target) {
+    renderer: function (id) {
         return createBlock({
             id,
-            target,
             items: [
                 // Top bar
                 createTopBar(),
