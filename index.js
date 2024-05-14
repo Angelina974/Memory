@@ -1,31 +1,37 @@
+// Initialise les variables globales
+let memory = localStorage.getItem('memory') ? JSON.parse(localStorage.getItem('memory')) : []
 let currentCategory
 let currentTheme
 let currentCard
 let checkedThemes
 let cardsToPlay
 let cardToPlay
-let memory = localStorage.getItem('memory') ? JSON.parse(localStorage.getItem('memory')) : []
 
+// Attend le chargement du DOM
 window.onload = async function () {
     
     await kiss.loader.loadScripts([
-        // Load the views
+        // Charge les vues et leur contrôleur
         './views/card',
+        './views/card.controller',
         './views/category',
+        './views/category.controller',
         './views/home',
+        './views/home.controller',
         './views/playRecto',
         './views/playVerso',
         './views/theme',
+        './views/theme.controller',
         './views/topBar',
 
-        // Load the controllers
+        // Charge les contrôleurs du jeu
         './controllers/create',
         './controllers/update',
         './controllers/delete',
-        './controllers/play',
+        './controllers/play'
     ])
 
-    // Load the styles
+    // Charge les feuilles de styles
     await kiss.loader.loadStyles([
         './views/card',
         './views/category',
@@ -35,6 +41,9 @@ window.onload = async function () {
         './views/topBar'
     ])
 
+    // Initialise le router client
     kiss.router.init()
+
+    // Affiche la vue home
     kiss.views.show('home')
 }

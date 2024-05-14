@@ -4,9 +4,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-    width: 150px;
-    height: 100px;
-    display: flex;
+    width: 40%;
+    height: 260px;
     align-items: center;
     justify-content: center;
 }
@@ -20,7 +19,7 @@
     width: 200px;
 }
 
-.card-button-container{
+.card-button-container {
     justify-content: center;
     align-items: center;
 }
@@ -35,4 +34,5 @@
     height: 150px;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }

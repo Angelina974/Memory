@@ -5,84 +5,35 @@ kiss.app.defineView({
             id,
             target,
             items: [
+                // Top bar
                 createTopBar(),
-                
+
+                // Titre du thème
                 {
                     type: 'html',
                     id: 'themeTitle',
                     class: 'themeTitle',
                 },
+
+                // Bouton pour ajouter une carte au thème
                 {
-                    class: "add-card",
-                    display: 'flex',
-                    alignItems: 'center',
-                    items: [
-                        {
-                            type: 'button',
-                            text: "Ajouter une carte",
-                            icon: 'fas fa-plus',
-                            height: 40,
-                            action: () => {
-                                currentCard = null
-                                kiss.router.navigateTo('card')
-                            }
-                        }
-                    ]
+                    type: 'button',
+                    text: "Ajouter une carte à ce thème",
+                    icon: 'fas fa-plus',
+                    height: 40,
+                    margin: 10,
+                    action: () => {
+                        currentCard = null
+                        kiss.router.navigateTo('card')
+                    }
                 },
+
+                // Zone pour afficher les cartes du thème
                 {
                     id: 'cards',
-                    class: 'themes',
-                },
-            ],
-            methods: {
-                load: function () {
-                    $('themeTitle').setInnerHtml(currentCategory + ':' + currentTheme)
-
-                    const category = memory.find(category => category.name === currentCategory)
-                    const theme = category.themes.find(theme => theme.name === currentTheme)
-                    const cardItems = theme.cards.map(card =>{
-                        return $(id).createCard(card)
-                    })
-                    $('cards').setItems(cardItems)
-                },
-                createCard: function(card) {
-                    return createBlock({
-                        class: 'card-recto',
-                        layout: 'vertical',
-                        items: [
-                            {
-                                type: 'html',
-                                html: card.recto,
-                            },
-                            {
-                                layout: 'horizontal',
-                                defaultConfig: {
-                                    margin: '10px 10px',
-                                },
-                                items:[
-                                    {
-                                        type: 'button',
-                                        icon: 'fas fa-edit',
-                                        action: () => {
-                                            currentCard = card
-                                            kiss.router.navigateTo('card')
-                                        }
-                                    },
-                                    {
-                                        type: 'button',
-                                        icon: 'fas fa-trash',
-                                        action: () => {
-                                            console.log('Supprimer')
-                                        }
-                                    }
-                                ] 
-                            }
-                        ]
-                    })
+                    class: 'themes'
                 }
-            }
-
+            ]
         })
-
     }
 })

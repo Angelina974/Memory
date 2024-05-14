@@ -1,20 +1,24 @@
-createTopBar = (test) => createBlock({
-    
+/**
+ * Template pour créer la top bar
+ */
+createTopBar = (title) => createBlock({
     class: 'topbar',
     items: [
+        // Logo
         {
             type: 'image',
             src: 'resources/img/logo.png',
             width: 150,
-            events : {
-                click : () => kiss.router.navigateTo('home')
+            events: {
+                click: () => kiss.router.navigateTo('home')
             }
         },
+        // Titre de la rubrique courante
         {
             class: 'topbar-title',
             type: 'html',
-            html: test,
-            flex: 1,
+            html: title,
+            flex: 1
         }
     ]
 })

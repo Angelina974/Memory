@@ -1,10 +1,10 @@
-.cards{
+.cards {
     display: flex;
     flex-wrap: wrap;
     flex-flow: row wrap;
 }
 
-.add-card{
+.add-card {
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -13,11 +13,11 @@
     width: 400px;
     height: 70px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 
-.themeTitle{
+.themeTitle {
     font-size: 20px;
     font-weight: bold;
     margin: 10px;

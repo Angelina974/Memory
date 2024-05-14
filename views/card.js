@@ -5,15 +5,22 @@ kiss.app.defineView({
             id,
             target,
             items: [
+                // Top bar
                 createTopBar(),
+
+                // Carte
                 {
                     display: 'flex',
                     alignItems: 'center',
                     margin: '40px 0',
-                    items: [{
+                    items: [
+                        // Recto de la carte
+                        {
                             class: "card",
                             layout: 'vertical',
-                            items: [{
+                            items: [
+                                // Champ pour saisir le recto
+                                {
                                     id: "fieldRecto",
                                     type: 'textarea',
                                     label: 'Ecrire la question ici',
@@ -34,10 +41,13 @@ kiss.app.defineView({
                                 }
                             ]
                         },
+                        // Verso de la carte
                         {
                             class: "card",
                             layout: 'vertical',
-                            items: [{
+                            items: [
+                                // Champ pour saisir le verso
+                                {
                                     id: "fieldVerso",
                                     type: 'textarea',
                                     label: 'Ecrire la réponse ici',
@@ -60,65 +70,36 @@ kiss.app.defineView({
                         },
                     ]
                 },
+
+                // Boutons de la carte
                 {
                     layout: 'horizontal',
                     class: "card-button-container",
-                    items: [{
+                    items: [
+                        // Block d'espacement pour pousser les boutons à droite du conteneur
+                        {
                             type: 'spacer',
                             flex: 1
                         },
+                        // Bouton pour annuler
                         {
                             type: 'button',
                             text: 'Annuler',
                             icon: 'fas fa-times',
                             class: "card-button",
-                            action: () => {
-                                kiss.router.navigateTo('theme')
-                            }
+                            action: () => kiss.router.navigateTo('theme')
                         },
+                        // Bouton pour enregistrer
                         {
                             type: 'button',
                             text: 'Enregistrer',
                             icon: 'fas fa-save',
                             class: "card-button",
-                            action: () => {
-                                // Création d'une nouvelle carte
-                                if (currentCard == null) {
-                                    const recto = $('fieldRecto').getValue()
-                                    const verso = $('fieldVerso').getValue()
-                                    if (!recto || !verso) {
-                                        return createNotification('Veuillez remplir les deux champs')
-                                    }
-                                    console.log(currentCategory, currentTheme)
-                                    addCard(currentCategory, currentTheme, recto, verso)
-                                    $('fieldRecto').setValue('')
-                                    $('fieldVerso').setValue('')
-                                    kiss.router.navigateTo('theme')
-                                } else {
-                                    // Modification d'une carte
-                                    const recto = $('fieldRecto').getValue()
-                                    const verso = $('fieldVerso').getValue()
-                                    if (!recto || !verso) {
-                                        return createNotification('Veuillez remplir les deux champs')
-                                    }
-                                    updateCard(currentCategory, currentTheme, currentCard.id, recto, verso)
-                                    $('fieldRecto').setValue('')
-                                    $('fieldVerso').setValue('')
-                                    kiss.router.navigateTo('theme')
-                                }
-                            }
-                        },
+                            action: () => $(id).saveOrUpdate()
+                        }
                     ]
                 }
-            ],
-            methods: {
-                load: function () {
-                    if (currentCard) {
-                        $('fieldRecto').setValue(currentCard.recto)
-                        $('fieldVerso').setValue(currentCard.verso)
-                    }
-                }
-            }
+            ]
         })
     }
 })
