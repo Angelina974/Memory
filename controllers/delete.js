@@ -1,3 +1,9 @@
+/**
+ * Supprime un thème
+ * 
+ * @param {string} categoryName 
+ * @param {string} themeName 
+ */
 function deleteTheme(categoryName, themeName) {
     memory.forEach(category => {
         if (category.name === categoryName) {

@@ -1,3 +1,9 @@
+/**
+ * Choisit les cartes à jouer
+ * Pour le moment, prend toutes les cartes des thèmes sélectionnés dans l'UI
+ * 
+ * @returns {Array<Object>} Tableau de cartes
+ */
 function chooseCards() {
     let cards = []
     memory.forEach(category => {

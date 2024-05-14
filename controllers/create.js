@@ -1,22 +1,32 @@
-// Function to creat a new category
+/**
+ * Ajoute une nouvelle catégorie
+ * 
+ * @param {string} name 
+ * @returns 
+ */
 function addCategory(name) {
-    // Check if the category already exists
     const hasCategory = memory.find(category => category.name === name)
-    // If the category already exists, return false
+
     if (hasCategory) {
         return false
     }
-    // Create a new category
     const newCategory = {
         name,
         themes: []
     }
-    // Add the new category to the memory local storage
+
     memory.push(newCategory)
     localStorage.setItem('memory', JSON.stringify(memory))
     return true
 }
 
+/**
+ * Ajoute un nouveau thème
+ * 
+ * @param {string} categoryName 
+ * @param {string} themeName 
+ * @returns 
+ */
 function addTheme(categoryName, themeName) {
     const hasTheme = memory
         .find(category => category.name === categoryName).themes
@@ -38,6 +48,14 @@ function addTheme(categoryName, themeName) {
     return true
 }
 
+/**
+ * Ajoute un nouvelle carte
+ * 
+ * @param {string} categoryName 
+ * @param {string} themeName 
+ * @param {string} recto 
+ * @param {string} verso 
+ */
 function addCard(categoryName, themeName, recto, verso) {
     const newCard = {
         id: Math.random(),
