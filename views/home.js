@@ -10,8 +10,9 @@ kiss.app.defineView({
                     class: "category",
                     display: 'flex',
                     alignItems: 'center',
-                    margin: '40px 10px',
-                    items: [{
+                    margin : '40px 10px',
+                    items: [
+                        {
                             id: "fieldCategory",
                             type: 'text',
                             label: 'Ajouter une catégorie',
@@ -39,28 +40,59 @@ kiss.app.defineView({
                     ]
                 },
                 {
-                    type: 'html',
+                    id: 'categories',
                     class: 'categories',
-                    id: "divAdd",
-                    events: {
-                        click: function (event) {
-                            const category = event.target.textContent
-                            console.log(category)
-                            currentCategory = category
-                            kiss.router.navigateTo('category')
-                        }
-                    }
                 }
             ],
             methods: {
-                load: function () {
-                    const categoriesHtml = memory.map(category => $(id).createCategory(category.name)).join('')
-                    const categoriesElement = document.querySelector('.categories')
-                    categoriesElement.setInnerHtml(categoriesHtml)
+                load: function(){
+                    const categoriesItems = memory.map(category => $(id).createCategory(category.name))
+                    $('categories').setItems(categoriesItems)
                 },
-                createCategory: function (category) {
-                    const html = `<div class="category">${category}</div>`
-                    return html
+                createCategory: function(category) {
+                    return createBlock({
+                        class: 'category',
+                        layout: 'vertical',
+                        items: [
+                            {
+                                type: 'html',
+                                html: category,
+                            },
+                            {
+                                type: 'button',
+                                icon: 'fas fa-edit',
+                                action: () => {
+                                    createDialog({
+                                        title: 'Modifier la catégorie',
+                                        type: 'input',
+                                        buttonCancelText: 'Annuler',
+                                        message: 'Entrez le nouveau nom de la catégorie',
+                                        action: (newCategory) => {
+                                            if (!newCategory) {
+                                                return createNotification('Veuillez saisir une catégorie')
+                                            }
+                                            const result = updateCategory(category, newCategory)
+                                            if (result == false) {
+                                                return createNotification('Cette catégorie existe déjà')
+                                            }
+                                            $(id).load()
+                                        }
+                                    })
+                                }
+                            }
+                        ],
+                        events: {
+                            click: function (event) {
+                                const clickedButton = event.target.closest('a-button')
+                                if (clickedButton) {
+                                    return
+                                }
+                                currentCategory = category
+                                kiss.router.navigateTo('category')
+    
+                            }
+                        }
+                    })
                 }
             }
         })

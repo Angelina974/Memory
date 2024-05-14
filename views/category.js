@@ -8,8 +8,8 @@ kiss.app.defineView({
                 createTopBar(),
                 {
                     type: 'html',
-                    id: 'themeTitle',
-                    class: 'themeTitle',
+                    id: 'categoryTitle',
+                    class: 'categoryTitle',
                 },
                 {
                     class: "theme",
@@ -70,6 +70,10 @@ kiss.app.defineView({
                                     if (checkedThemes.length === 0) {
                                         return createNotification('Veuillez sélectionner au moins un thème')
                                     }
+                                    cardsToPlay = chooseCards()
+                                    if (cardsToPlay.length === 0) {
+                                        return createNotification('Il n\'y a pas de carte à jouer')
+                                    }
                                     kiss.router.navigateTo('playRecto')
                                 },
                             },
@@ -84,6 +88,9 @@ kiss.app.defineView({
 
             methods: {
                 load: function () {
+                    // Met à jour le titre de la page
+                    $('categoryTitle').setInnerHtml(currentCategory)
+
                     // Récupère la catégorie actuelle
                     const category = memory.find(category => category.name === currentCategory)
 
@@ -130,9 +137,7 @@ kiss.app.defineView({
                                         text: 'Modifier',
                                         icon: 'fas fa-edit',
                                         events: {
-                                            click: function (event) {
-                                                const theme = event.target.textContent
-                                                console.log(theme)
+                                            click: function () {
                                                 currentTheme = theme
                                                 kiss.router.navigateTo('theme')
                                             },
@@ -143,10 +148,17 @@ kiss.app.defineView({
                                         text: 'Supprimer',
                                         icon: 'fas fa-trash',
                                         events: {
-                                            click: function (event) {
-                                                const theme = event.target.textContent
-                                                console.log(theme)
-                                                currentTheme = theme
+                                            click: function () {
+                                                createDialog({
+                                                    title: 'Supprimer le thème',
+                                                    type: 'danger',
+                                                    buttonCancelText: 'Annuler',
+                                                    message: 'Etes-vous sûr de vouloir supprimer ce thème ?',
+                                                    action: () => {
+                                                        deleteTheme(currentCategory, theme)
+                                                        $(id).load()
+                                                    }
+                                                })
                                             },
                                         },
                                     }
