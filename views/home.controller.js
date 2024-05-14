@@ -17,19 +17,25 @@ kiss.app.defineViewController("home", {
     createCategory: function (category) {
         return createBlock({
             class: 'category',
-            layout: 'vertical',
+            layout: 'horizontal',
             items: [
                 // Nom de la catégorie
                 {
                     type: 'html',
                     html: category,
                 },
+                {
+                    type: 'spacer',
+                    flex: 1
+                },
 
                 // Bouton pour modifier la catégorie
                 {
                     type: 'button',
+                    class: 'editCategoryButton',
                     icon: 'fas fa-edit',
                     action: () => {
+                        // Création d'un pannel de dialogue pour modifier le nom de la catégorie
                         createDialog({
                             title: 'Modifier la catégorie',
                             type: 'input',
@@ -40,11 +46,15 @@ kiss.app.defineViewController("home", {
                                     return createNotification('Veuillez saisir une catégorie')
                                 }
 
+                                // Appel de la fonction pour modifier la catégorie
                                 const result = updateCategory(category, newCategory)
 
+                                // Si la catégorie existe déjà, afficher une notification
                                 if (result == false) {
                                     return createNotification('Cette catégorie existe déjà')
                                 }
+
+                                // Recharge la vue
                                 this.load()
                             }
                         })
@@ -60,7 +70,7 @@ kiss.app.defineViewController("home", {
                     if (clickedButton) {
                         return
                     }
-
+                    // Stocke la catégorie actuelle
                     currentCategory = category
                     kiss.router.navigateTo('category')
                 }
@@ -72,12 +82,18 @@ kiss.app.defineViewController("home", {
      * Ajoute une nouvelle catégorie
      */
     addNewCategory() {
+        // Récupère le nom de la catégorie saisie dans le champ
         const category = $('fieldCategory').getValue()
+
+        // Vérifie si le champ est vide
         if (!category) {
             return createNotification('Veuillez saisir une catégorie')
         }
 
+        // Ajoute la catégorie
         const result = addCategory(category)
+
+        // Vérifie si la catégorie existe déjà
         if (result == false) {
             return createNotification('Cette catégorie existe déjà')
         }

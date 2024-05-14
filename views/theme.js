@@ -19,8 +19,7 @@ kiss.app.defineView({
                     type: 'button',
                     text: "Ajouter une carte à ce thème",
                     icon: 'fas fa-plus',
-                    height: 40,
-                    margin: 10,
+                    class: 'add-card-button',
                     action: () => {
                         currentCard = null
                         kiss.router.navigateTo('card')

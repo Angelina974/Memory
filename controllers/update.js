@@ -5,11 +5,13 @@
  * @param {string} newName 
  */
 function updateCategory(oldName, newName){
+    // Vérifie si l'ancien nom correspond au nom actuelle de la catégorie et le remplace par le nouveau nom
     memory.forEach(category => {
         if (category.name === oldName) {
             category.name = newName
         }
     })
+    // Met à jour le localStorage
     localStorage.setItem('memory', JSON.stringify(memory))
 }
 
@@ -23,12 +25,18 @@ function updateCategory(oldName, newName){
  * @param {string} verso 
  */
 function updateCard(categoryName, themeName, id, recto, verso){
+
+    // Parcours toutes les catégories et les thèmes pour trouver la bonne carte et la mettre à jour
     memory.forEach(category => {
         if (category.name === categoryName) {
             category.themes.forEach(theme => {
                 if (theme.name === themeName) {
                     theme.cards.forEach(card => {
+
+                    // Vérifie si l'id de la carte correspond à l'id de la carte passée en paramètre
                         if(card.id === id){
+
+                            // Met à jour le recto et le verso de la carte
                             card.verso = verso
                             card.recto = recto
                         }
@@ -55,6 +63,7 @@ function updateCardLevel(categoryName, themeName, id, level){
                 if (theme.name === themeName) {
                     theme.cards.forEach(card => {
                         if(card.id === id){
+                            // Met à jour le niveau de la carte
                             card.level = level
                         }
                     })

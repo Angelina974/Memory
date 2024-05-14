@@ -7,7 +7,7 @@ kiss.app.defineViewController("theme", {
         // Met à jour le titre
         $('themeTitle').setInnerHtml("Catégorie : " + currentCategory + ' - Thème : ' + currentTheme)
 
-        // Récupère la catégorie et le thème
+        // Récupère la catégorie et le thème actuel
         const category = memory.find(category => category.name === currentCategory)
         const theme = category.themes.find(theme => theme.name === currentTheme)
 
@@ -15,6 +15,8 @@ kiss.app.defineViewController("theme", {
         const cardItems = theme.cards.map(card => {
             return this.createCard(card)
         })
+        
+        // Injecte les cartes dans la vue
         $('cards').setItems(cardItems)
     },
 

@@ -5,6 +5,7 @@
  * @returns {Array<Object>} Tableau de cartes
  */
 function chooseCards() {
+    // Tableau de cartes à jouer
     let cards = []
     memory.forEach(category => {
         category.themes.forEach(theme => {

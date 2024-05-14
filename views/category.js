@@ -19,18 +19,20 @@ kiss.app.defineView({
                     class: "theme",
                     display: 'flex',
                     alignItems: 'center',
+                    margin : '20px 10px 10px 10px',
                     items: [{
                             id: "fieldTheme",
                             type: 'text',
                             label: 'Ajouter un thème',
                             labelPosition: 'top',
                             placeholder: 'Exemple : Animaux, Nature, Sciences, etc...',
-                            fieldWidth: 300,
+                            fontSize: 13,
+                            fieldWidth: 280
                         },
                         {
                             type: 'button',
                             icon: 'fas fa-plus',
-                            height: 40,
+                            class: 'addThemeButton',
                             action: () => $(id).addNewTheme()
                         }
                     ]
@@ -40,22 +42,23 @@ kiss.app.defineView({
                 {
                     class: 'themes',
                     id: "themeHtml",
-                    margin: '30px 0px',
                 },
-
+                
                 // Conteneur du bouton pour jouer (permet de le centrer)
                 {
-                    class: "play-button",
+                    class: 'playButtonContainer',
                     items: [
                         // Bouton pour jouer
                         {
                             type: 'button',
                             text: 'Jouer',
                             icon: 'fas fa-gamepad',
+                            class: "play-button",
+                            fontSize: 16,
                             action: () => $(id).play()
-                        }
+                        },
                     ]
-                }
+                },
             ]
         })
     }

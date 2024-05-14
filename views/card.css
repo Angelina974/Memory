@@ -1,22 +1,25 @@
 .card {
     margin: 10px;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    width: 40%;
-    height: 260px;
+    border-radius: 10px;
+    background-color: #FFF3D7;
+    width: 60%;
     align-items: center;
     justify-content: center;
 }
 
+
 .card-button {
     margin: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    border-radius: 10px;
+    background-color: #FFF3D7;
     width: 200px;
+    border: none;
+}
+
+.card-button:hover {
+    background-color: #f7d6a3;
 }
 
 .card-button-container {

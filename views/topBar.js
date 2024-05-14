@@ -8,7 +8,7 @@ createTopBar = (title) => createBlock({
         {
             type: 'image',
             src: 'resources/img/logo.png',
-            width: 150,
+            class: 'topbar-logo',
             events: {
                 click: () => kiss.router.navigateTo('home')
             }

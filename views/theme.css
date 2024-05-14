@@ -7,9 +7,9 @@
 .add-card {
     margin: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    border: none;
+    border-radius: 10px;
+    background-color: #FFF3D7;
     width: 400px;
     height: 70px;
     display: flex;
@@ -17,9 +17,30 @@
     justify-content: center;
 }
 
+.add-card:hover {
+    background-color: #f7d6a3;
+}
+
 .themeTitle {
     font-size: 20px;
     font-weight: bold;
     margin: 10px;
     text-align: center;
+}
+
+.add-card-button {
+    margin: 50px 10px 10px;
+    padding: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #FFF3D7;
+    width: 400px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-card-button:hover {
+    background-color: #f7d6a3;
 }

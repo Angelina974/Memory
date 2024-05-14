@@ -5,7 +5,7 @@ kiss.app.defineViewController("category", {
      */
     load: function () {
         // Met à jour le titre de la page
-        $('categoryTitle').setInnerHtml("Catégorie : " + currentCategory)
+        $('categoryTitle').setInnerHtml("Thèmes de la catégorie : " + currentCategory)
 
         // Récupère la catégorie actuelle
         const category = memory.find(category => category.name === currentCategory)
@@ -29,27 +29,26 @@ kiss.app.defineViewController("category", {
     createTheme: function (theme) {
         return createBlock({
             class: 'theme',
-            layout: 'vertical',
+            layout: 'horizontal',
+            backgroundColor: '#f5f5f5',
             items: [
                 // Case à cocher du thème
                 {
-                    layout: 'horizontal',
-                    width: '100%',
-                    items: [{
-                            type: 'spacer',
-                            flex: 1
-                        },
-                        {
-                            type: 'html',
-                            html: `<input type="checkbox" class="themeCheckbox" id="${theme}"></input>`
-                        }
-                    ]
+                    type: 'html',
+                    html: `<input type="checkbox" class="themeCheckbox" id="${theme}"></input>`
                 },
+
                 // Nom du thème
                 {
                     type: 'html',
-                    html: theme
+                    html: theme,
+                    padding: '0 30px',
                 },
+                {
+                    type: 'spacer',
+                    flex: 1
+                },
+
                 // Boutons pour modifier et supprimer le thème
                 {
                     defaultConfig: {
@@ -61,20 +60,33 @@ kiss.app.defineViewController("category", {
                         // Bouton pour modifier le thème
                         {
                             type: 'button',
-                            text: 'Modifier',
                             icon: 'fas fa-edit',
                             action: () => this.editTheme(theme)
                         },
                         // Bouton pour supprimer le thème
                         {
                             type: 'button',
-                            text: 'Supprimer',
                             icon: 'fas fa-trash',
                             action: () => this.deleteTheme(theme)
                         }
                     ]
                 }
-            ]
+            ],
+            events: {
+                mouseOver: function () {
+                    this.style.backgroundColor = '#e5e5e5'
+                },
+                mouseOut: function () {
+                    this.style.backgroundColor = '#f5f5f5'
+                },
+                click: function (event) {
+                    const checkbox = event.target.closest('.themeCheckbox')
+                    if (checkbox) {
+                        return
+                    }
+                    this.querySelector('.themeCheckbox').click()
+                }
+            }
         })
     },
 
@@ -108,16 +120,23 @@ kiss.app.defineViewController("category", {
      * Ajouter un nouveau thème
      */
     addNewTheme() {
+        // Récupère le thème saisi dans le champs
         const theme = $('fieldTheme').getValue()
+
+        // Vérifie si le thème est vide
         if (!theme) {
             return createNotification('Veuillez saisir un thème')
         }
 
+        // Ajoute le thème à la catégorie actuelle
         const result = addTheme(currentCategory, theme)
+
+        // Vérifie si le thème existe déjà
         if (result == false) {
             return createNotification('Ce thème existe déjà')
         }
 
+        // Vide le champs de saisie
         $('fieldTheme').setValue('')
 
         this.load()

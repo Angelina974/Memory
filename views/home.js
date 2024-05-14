@@ -12,7 +12,7 @@ kiss.app.defineView({
                     class: "category",
                     display: 'flex',
                     alignItems: 'center',
-                    margin : '40px 10px',
+                    margin : '50px 10px 10px 10px',
                     items: [
                         // Champ pour donner le nom de la catégorie
                         {
@@ -20,14 +20,15 @@ kiss.app.defineView({
                             type: 'text',
                             label: 'Ajouter une catégorie',
                             labelPosition: 'top',
-                            placeholder: 'Exemple : Animaux, Nature, Sciences, etc...',
-                            fieldWidth: 300
+                            placeholder: 'Exemple : Animaux, Nature, etc...',
+                            fontSize: 13,
+                            fieldWidth: 280
                         },
                         // Bouton pour ajouter la catégorie
                         {
                             type: 'button',
                             icon: 'fas fa-plus',
-                            height: 40,
+                            class:  'addCategoryButton',
                             action: () => $(id).addNewCategory()
                         }
                     ]
