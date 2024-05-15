@@ -13,12 +13,5 @@ createTopBar = (title) => createBlock({
                 click: () => kiss.router.navigateTo('home')
             }
         },
-        // Titre de la rubrique courante
-        {
-            class: 'topbar-title',
-            type: 'html',
-            html: title,
-            flex: 1
-        }
     ]
 })

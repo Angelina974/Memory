@@ -41,6 +41,8 @@ kiss.app.defineViewController("home", {
                             type: 'input',
                             buttonCancelText: 'Annuler',
                             message: 'Entrez le nouveau nom de la catégorie',
+                            headerBackgroundColor: '#F7C374',
+                            animation: 'slideInUp',
                             action: (newCategory) => {
                                 if (!newCategory) {
                                     return createNotification('Veuillez saisir une catégorie')

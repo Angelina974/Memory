@@ -15,3 +15,7 @@ function deleteTheme(categoryName, themeName) {
     })
     localStorage.setItem('memory', JSON.stringify(memory))
 }
+
+function deleteCard(){
+    
+}

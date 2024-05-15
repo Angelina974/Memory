@@ -6,16 +6,29 @@ kiss.app.defineView({
             items: [
                 // Top bar
                 createTopBar(),
-                
+
                 {
                     layout: 'vertical',
                     alignItems: 'center',
                     items: [
                         // Block pour afficher le verso de la carte à jouer
                         {
-                            id: "cardPlayVerso",
-                            type: "html",
+                            items: [{
+                                    id: "cardPlayVerso",
+                                    type: "html",
+                                },
+                                {
+                                    id: "cardPlayVerso",
+                                    type: "html",
+                                    animation: {
+                                        name: "flipInY",
+                                        speed: "slow"
+                                    }
+                                },
+
+                            ]
                         },
+
                         // Block contenant les boutons
                         {
                             layout: 'horizontal',

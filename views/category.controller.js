@@ -37,12 +37,18 @@ kiss.app.defineViewController("category", {
                     type: 'html',
                     html: `<input type="checkbox" class="themeCheckbox" id="${theme}"></input>`
                 },
+                {
+                    type: 'checkbox',
+                    id: theme,
+                    shape: 'circle',
+                    class: 'themeCheckbox',
+                },
 
                 // Nom du thème
                 {
                     type: 'html',
                     html: theme,
-                    padding: '0 30px',
+                    padding: '0 20px',
                 },
                 {
                     type: 'spacer',
@@ -109,6 +115,7 @@ kiss.app.defineViewController("category", {
             type: 'danger',
             buttonCancelText: 'Annuler',
             message: 'Etes-vous sûr de vouloir supprimer ce thème ?',
+            animation: 'slideInUp',
             action: () => {
                 deleteTheme(currentCategory, theme)
                 this.load()

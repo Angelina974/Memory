@@ -15,7 +15,7 @@ kiss.app.defineViewController("theme", {
         const cardItems = theme.cards.map(card => {
             return this.createCard(card)
         })
-        
+
         // Injecte les cartes dans la vue
         $('cards').setItems(cardItems)
     },
@@ -34,16 +34,15 @@ kiss.app.defineViewController("theme", {
                 // Recto de la carte
                 {
                     type: 'html',
-                    html:
-                        `${card.recto}
-                        <br><br>
+                    html: `<div class="card-title">${card.recto}</div>
+                        <br>
                         (Niveau: ${card.level})`,
                 },
                 // Boutons pour modifier et supprimer la carte
                 {
                     layout: 'horizontal',
                     defaultConfig: {
-                        margin: 20,
+                        class: 'card-buttons',
                     },
                     items: [
                         // Bouton pour modifier la carte
@@ -62,9 +61,11 @@ kiss.app.defineViewController("theme", {
                             action: () => {
                                 console.log('Supprimer')
                             }
-                        }
+                        },
+
                     ]
-                }
+                },
+
             ]
         })
     }

@@ -26,7 +26,8 @@ kiss.app.defineView({
                                     labelPosition: 'top',
                                     fieldWidth: '100%',
                                     width: '100%',
-                                    rows: 10,
+                                    rows: 12,
+                                    fontSize: 16,
                                 },
                                 {
                                     type: 'spacer',
@@ -53,7 +54,8 @@ kiss.app.defineView({
                                     labelPosition: 'top',
                                     fieldWidth: '100%',
                                     width: '100%',
-                                    rows: 10,
+                                    rows: 12,
+                                    fontSize: 16,
                                 },
                                 {
                                     type: 'spacer',
@@ -85,7 +87,8 @@ kiss.app.defineView({
                             type: 'button',
                             text: 'Annuler',
                             icon: 'fas fa-times',
-                            class: "card-button",
+                            class: "cancel-card-button",
+                            fontSize: 16,
                             action: () => kiss.router.navigateTo('theme')
                         },
                         // Bouton pour enregistrer
@@ -93,7 +96,8 @@ kiss.app.defineView({
                             type: 'button',
                             text: 'Enregistrer',
                             icon: 'fas fa-save',
-                            class: "card-button",
+                            class: "save-card-button",
+                            fontSize: 16,
                             action: () => $(id).saveOrUpdate()
                         }
                     ]

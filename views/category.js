@@ -54,7 +54,12 @@ kiss.app.defineView({
                             text: 'Jouer',
                             icon: 'fas fa-gamepad',
                             class: "play-button",
-                            fontSize: 16,
+                            fontSize: 18,
+                            animation: {
+                                name: 'heartBeat',
+                                speed: 'slower',
+                                repeat: 'infinite'
+                            },
                             action: () => $(id).play()
                         },
                     ]
