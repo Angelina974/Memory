@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: rgb(255, 209, 110) 1px solid;
 }
 
 .add-card:hover {
@@ -39,6 +40,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: rgb(255, 209, 110) 1px solid;
+    
 }
 
 .add-card-button:hover {
@@ -56,12 +59,12 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    border: rgb(255, 209, 110) 1px solid;
 }
 
 .card-buttons {
     height: 50px;
     width: 50px;
-    /* padding: 8px; */
     margin: 15px 10px;
     cursor: pointer;
     align-items: center;

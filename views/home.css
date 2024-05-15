@@ -16,6 +16,7 @@
     font-size: 20px;
     background: #FFF3D7;
     cursor: pointer;
+    border: rgb(255, 209, 110) 1px solid;
 }
 
 .category:hover {
