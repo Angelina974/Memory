@@ -32,6 +32,7 @@ kiss.app.defineView({
                                 {
                                     text: 'Oui',
                                     icon: 'fas fa-check',
+                                    iconColor: 'green',
                                     action: async () => {
                                         // Incrémente le niveau de la carte
                                         const currentCardLevel = cardToPlay.level || 1
@@ -58,6 +59,7 @@ kiss.app.defineView({
                                 {
                                     text: 'Non',
                                     icon: 'fas fa-times',
+                                    iconColor: 'red',
                                     action: async () => {
                                         // Passe le niveau de la carte à 1
                                         updateCardLevel(currentCategory, currentTheme, cardToPlay.id, 1)

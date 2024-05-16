@@ -60,6 +60,11 @@ kiss.app.defineViewController("home", {
                                 this.load()
                             }
                         })
+                    },
+                    events: {
+                        mouseOver: function () {
+                            this.setAnimation('jello')
+                        }
                     }
                 }
             ],

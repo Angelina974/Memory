@@ -17,7 +17,7 @@ kiss.app.defineView({
                     class: "theme",
                     display: 'flex',
                     alignItems: 'center',
-                    margin : '20px 10px 10px 10px',
+                    margin : '20px 10px 10px 25px',
                     items: [{
                             id: "fieldTheme",
                             type: 'text',

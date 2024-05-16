@@ -54,8 +54,12 @@ kiss.app.defineViewController("category", {
                 // Boutons pour modifier et supprimer le thème
                 {
                     defaultConfig: {
-                        class: 'themeButtons'
-
+                        class: 'themeButtons',
+                        events: {
+                            mouseOver: function () {
+                                this.setAnimation('jello')
+                            },
+                        }
                     },
                     layout: 'horizontal',
                     items: [
@@ -69,7 +73,7 @@ kiss.app.defineViewController("category", {
                         {
                             type: 'button',
                             icon: 'fas fa-trash',
-                            action: () => this.deleteTheme(theme)
+                            action: () => this.deleteTheme(theme),
                         }
                     ]
                 }
@@ -77,6 +81,7 @@ kiss.app.defineViewController("category", {
             events: {
                 mouseOver: function () {
                     this.style.backgroundColor = '#e5e5e5'
+                    
                 },
                 mouseOut: function () {
                     this.style.backgroundColor = '#f5f5f5'

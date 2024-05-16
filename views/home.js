@@ -10,7 +10,7 @@ kiss.app.defineView({
                     class: "category",
                     display: 'flex',
                     alignItems: 'center',
-                    margin : '50px 10px 10px 10px',
+                    margin : '50px 10px 10px 25px',
                     items: [
                         // Champ pour donner le nom de la catégorie
                         {
