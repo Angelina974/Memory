@@ -25,13 +25,29 @@ kiss.app.defineView({
                             labelPosition: 'top',
                             placeholder: 'Exemple : Animaux, Nature, Sciences, etc...',
                             fontSize: 13,
-                            fieldWidth: 280
+                            fieldWidth: 280,
+                            classes: {
+                                'field-label': 'field-title'
+                            },
+                            events: {
+                                keyPress: function (e) {
+                                    if (e.key === 'Enter') {
+                                        $(id).addNewTheme()
+                                    }
+                                }
+                            }
                         },
                         {
                             type: 'button',
                             icon: 'fas fa-plus',
                             class: 'addThemeButton',
-                            action: () => $(id).addNewTheme()
+                            iconSize: 16,
+                            action: () => $(id).addNewTheme(),
+                            events: {
+                                mouseOver: function () {
+                                    this.setAnimation('zoomIn')
+                                }
+                            }
                         }
                     ]
                 },
@@ -53,6 +69,7 @@ kiss.app.defineView({
                             icon: 'fas fa-gamepad',
                             class: "play-button",
                             fontSize: 18,
+                            iconSize: 16,
                             animation: {
                                 name: 'heartBeat',
                                 speed: 'slower',

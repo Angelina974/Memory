@@ -56,3 +56,8 @@
 .addCategoryButton:hover {
     background: #f7d6a3;
 }
+
+.field-title {
+    font-size: 18px !important;
+    margin-bottom: 3px;
+}

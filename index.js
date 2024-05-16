@@ -1,5 +1,5 @@
 // Initialise les variables globales
-let memory = localStorage.getItem('memory') ? JSON.parse(localStorage.getItem('memory')) : []
+let memory = localStorage.getItem('memory') ? JSON.parse(localStorage.getItem('memory')) : memoryExample
 let currentCategory
 let currentTheme
 let currentCard

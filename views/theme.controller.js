@@ -41,11 +41,21 @@ kiss.app.defineViewController("theme", {
                         <br>
                         (Niveau: ${card.level})`,
                 },
+                {
+                    type: 'spacer',
+                    flex: 1
+                },
                 // Boutons pour modifier et supprimer la carte
                 {
                     layout: 'horizontal',
                     defaultConfig: {
                         class: 'card-buttons',
+                        iconSize: 16,
+                        events: {
+                            mouseOver: function () {
+                                this.setAnimation('jello')
+                            }
+                        }
                     },
                     items: [
                         // Bouton pour modifier la carte

@@ -20,14 +20,30 @@ kiss.app.defineView({
                             labelPosition: 'top',
                             placeholder: 'Exemple : Animaux, Nature, etc...',
                             fontSize: 13,
-                            fieldWidth: 280
+                            fieldWidth: 280,
+                            classes: {
+                                'field-label': 'field-title'
+                            },
+                            events: {
+                                keyPress: function (e) {
+                                    if (e.key === 'Enter') {
+                                        $(id).addNewCategory()
+                                    }
+                                }
+                            }
                         },
                         // Bouton pour ajouter la catégorie
                         {
                             type: 'button',
                             icon: 'fas fa-plus',
                             class:  'addCategoryButton',
-                            action: () => $(id).addNewCategory()
+                            iconSize: 16,
+                            action: () => $(id).addNewCategory(),
+                            events: {
+                                mouseOver: function () {
+                                    this.setAnimation('zoomIn')
+                                }
+                            }
                         }
                     ]
                 },
