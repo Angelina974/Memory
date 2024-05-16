@@ -3,10 +3,8 @@ kiss.app.defineView({
     renderer: function (id) {
         return createBlock({
             id,
+            target: 'content',
             items: [
-                // Top bar
-                createTopBar(),
-
                 {
                     layout: 'vertical',
                     alignItems: 'center',
@@ -17,15 +15,6 @@ kiss.app.defineView({
                                     id: "cardPlayVerso",
                                     type: "html",
                                 },
-                                {
-                                    id: "cardPlayVerso",
-                                    type: "html",
-                                    animation: {
-                                        name: "flipInY",
-                                        speed: "slow"
-                                    }
-                                },
-
                             ]
                         },
 
@@ -35,13 +24,15 @@ kiss.app.defineView({
                             defaultConfig: {
                                 margin: '10px 10px',
                                 type: 'button',
+                                class: 'yes-no-buttons',
+                                iconSize: 20,
                             },
                             items: [
                                 // Bouton pour dire "Oui" je me rappelle
                                 {
                                     text: 'Oui',
                                     icon: 'fas fa-check',
-                                    action: () => {
+                                    action: async () => {
                                         // Incrémente le niveau de la carte
                                         const currentCardLevel = cardToPlay.level || 1
                                         const nextLevel = currentCardLevel + 1
@@ -55,7 +46,11 @@ kiss.app.defineView({
                                             kiss.router.navigateTo('category')
                                         } else {
                                             // Sinon, passe à la carte suivante
-                                            kiss.router.navigateTo('playRecto')
+                                            await kiss.router.navigateTo('playRecto')
+                                            $('cardPlay').setAnimation({
+                                                name: 'flipInY',
+                                                speed: 'slow'
+                                            })
                                         }
                                     }
                                 },
@@ -63,7 +58,7 @@ kiss.app.defineView({
                                 {
                                     text: 'Non',
                                     icon: 'fas fa-times',
-                                    action: () => {
+                                    action: async () => {
                                         // Passe le niveau de la carte à 1
                                         updateCardLevel(currentCategory, currentTheme, cardToPlay.id, 1)
 
@@ -75,7 +70,11 @@ kiss.app.defineView({
                                             kiss.router.navigateTo('category')
                                         } else {
                                             // Sinon, passe à la carte suivante
-                                            kiss.router.navigateTo('playRecto')
+                                            await kiss.router.navigateTo('playRecto')
+                                            $('cardPlay').setAnimation({
+                                                name: 'flipInY',
+                                                speed: 'slow'
+                                            })
                                         }
                                     }
                                 }

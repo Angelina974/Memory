@@ -23,6 +23,7 @@ window.onload = async function () {
         './views/theme',
         './views/theme.controller',
         './views/topBar',
+        './views/start',
 
         // Charge les contrôleurs du jeu
         './controllers/create',
@@ -44,6 +45,12 @@ window.onload = async function () {
     // Initialise le router client
     kiss.router.init()
 
+    // Définit le thème de l'application
+    kiss.theme.set({
+        color: 'light',
+        geometry: 'round'
+    })
+
     // Affiche la vue home
-    kiss.views.show('home')
+    kiss.router.navigateTo('start')
 }

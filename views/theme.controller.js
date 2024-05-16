@@ -5,7 +5,10 @@ kiss.app.defineViewController("theme", {
     load: function () {
 
         // Met à jour le titre
-        $('themeTitle').setInnerHtml("Catégorie : " + currentCategory + ' - Thème : ' + currentTheme)
+        $('themeTitle').setInnerHtml(`
+        Catégorie : <span class="themeTitleColor"> ${currentCategory} </span>
+        <span class="fas fa-chevron-right"></span>
+        Thème : <span class="themeTitleColor"> ${currentTheme} </span>`)
 
         // Récupère la catégorie et le thème actuel
         const category = memory.find(category => category.name === currentCategory)
@@ -59,7 +62,9 @@ kiss.app.defineViewController("theme", {
                             type: 'button',
                             icon: 'fas fa-trash',
                             action: () => {
-                                console.log('Supprimer')
+                                deleteCard(currentCategory, currentTheme, card.id)
+                                this.load()
+                                createNotification(`La carte ${card.recto} a été supprimée`) 
                             }
                         },
 

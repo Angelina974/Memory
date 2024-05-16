@@ -3,10 +3,8 @@ kiss.app.defineView({
     renderer: function (id) {
         return createBlock({
             id,
+            target: 'content',
             items: [
-                // Top bar
-                createTopBar(),
-
                 // Titre du thème
                 {
                     type: 'html',

@@ -3,10 +3,8 @@ kiss.app.defineView({
     renderer: function (id) {
         return createBlock({
             id,
+            target: 'content',
             items: [
-                // Top bar
-                createTopBar(),
-
                 {
                     layout: 'vertical',
                     alignItems: 'center',
@@ -20,7 +18,14 @@ kiss.app.defineView({
                         {
                             type: 'button',
                             icon: 'fas fa-chevron-right',
-                            action: () => kiss.router.navigateTo('playVerso')
+                            class: 'yes-no-buttons',
+                            action: async () => {
+                                await kiss.router.navigateTo('playVerso')
+                                $('cardPlayVerso').setAnimation({
+                                    name: 'flipInY',
+                                    speed: 'slow'
+                                })
+                            }
                         }
                     ]
                 }
@@ -39,7 +44,7 @@ kiss.app.defineView({
                         <h2>${cardToPlay.recto}</h2>
                         </div>
                         
-                        <h3>Essais de te souvenir et retourne la carte.</h3>
+                        <h3>Essaie de te souvenir et retourne la carte.</h3>
                         </div>`
 
                     // Injecte le HTML dans la vue

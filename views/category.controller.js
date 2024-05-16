@@ -5,7 +5,7 @@ kiss.app.defineViewController("category", {
      */
     load: function () {
         // Met à jour le titre de la page
-        $('categoryTitle').setInnerHtml("Thèmes de la catégorie : " + currentCategory)
+        $('categoryTitle').setInnerHtml('Thèmes de la catégorie : <span class="themeTitleColor">' + currentCategory + '</span>')
 
         // Récupère la catégorie actuelle
         const category = memory.find(category => category.name === currentCategory)
@@ -33,10 +33,6 @@ kiss.app.defineViewController("category", {
             backgroundColor: '#f5f5f5',
             items: [
                 // Case à cocher du thème
-                {
-                    type: 'html',
-                    html: `<input type="checkbox" class="themeCheckbox" id="${theme}"></input>`
-                },
                 {
                     type: 'checkbox',
                     id: theme,
@@ -86,11 +82,11 @@ kiss.app.defineViewController("category", {
                     this.style.backgroundColor = '#f5f5f5'
                 },
                 click: function (event) {
-                    const checkbox = event.target.closest('.themeCheckbox')
+                    const checkbox = event.target.closest('a-checkbox')
                     if (checkbox) {
                         return
                     }
-                    this.querySelector('.themeCheckbox').click()
+                    this.querySelector('a-checkbox').toggleValue()
                 }
             }
         })
@@ -153,10 +149,10 @@ kiss.app.defineViewController("category", {
      * Lancer le jeu
      */
     play() {
-        const checkboxes = document.querySelectorAll('.themeCheckbox')
+        const checkboxes = document.querySelectorAll('a-checkbox')
 
         // Récupère les thèmes cocher
-        checkedThemes = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.id)
+        checkedThemes = Array.from(checkboxes).filter(checkbox => checkbox.getValue()).map(checkbox => checkbox.id)
         if (checkedThemes.length === 0) {
             return createNotification('Veuillez sélectionner au moins un thème')
         }
