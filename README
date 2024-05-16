@@ -26,14 +26,12 @@ Cartes :
 - suppression de cartes d'un thème
 - modification d'une carte Recto / Verso
 
-### Jeu
-
+Jeu :
 - Depuis la home page, on peut choisir une catégorie
 - Depuis une catégorie, on peut sélectionner / désélectionner des thèmes
 - On peut lancer le jeu sur les thèmes sélectionnés
 
-### Bonus
-
+Bonus :
 - Au départ, si le localStorage n'est pas encore initialisé, on propose un exemple de jeu par défaut.
 - L'UI implémente des animations sur les boutons et quand on retourne une carte
 
