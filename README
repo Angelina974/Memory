@@ -8,37 +8,66 @@ En effet, le framework que nous avons utilisé ne nécessite aucun serveur web e
 
 Non seulement cela fonctionne en mode local, mais en plus cela fonctionne aussi avec des URLs de type file:///
 
+## Fonctionnalités implémentées
+
+### Paramétrage de l'application Memory
+Catégories :
+- ajout d'une catégorie
+- suppression d'une catégorie
+- modification du nom d'une catégorie
+
+Thèmes :
+- ajout d'un thème
+- suppression d'un thème
+- modification du nom d'un thème
+
+Cartes :
+- ajout de cartes dans un thème
+- suppression de cartes d'un thème
+- modification d'une carte Recto / Verso
+
+### Jeu
+
+- Depuis la home page, on peut choisir une catégorie
+- Depuis une catégorie, on peut sélectionner / désélectionner des thèmes
+- On peut lancer le jeu sur les thèmes sélectionnés
+
+### Bonus
+
+- Au départ, si le localStorage n'est pas encore initialisé, on propose un exemple de jeu par défaut.
+- L'UI implémente des animations sur les boutons et quand on retourne une carte
+
 ## Organisation du code et des composants
 
 - /resources 
-    > contient:
-    - les ressources du projets, comme les images
-    - le fichier d'initialisation du memory (pour vous éviter de partir de zéro dans vos tests !)
+    - contient :
+      - les ressources du projets, comme les images
+      - le fichier d'initialisation du memory (pour vous éviter de partir de zéro dans vos tests !)
 - /controllers
-    > contient les contrôleurs du jeu, pour gérer les catégories, les thèmes, et les cartes
+    - contient les contrôleurs du jeu, pour gérer les catégories, les thèmes, et les cartes
 - /views
-    > contient:
-    - les vues du projets (ex: home.js)
-    - les contrôleurs de vues (ex: home.controller.js)
-    - les styles (ex: home.css)
+    - contient :
+      - les vues du projet (ex: home.js)
+      - les contrôleurs de vues (ex: home.controller.js)
+      - les styles (ex: home.css)
 
 A noter que cette manière d'organiser le code est préconisée par le framework KissJS que nous avons utilisé.
 
-## Framework utilisé: KissJS
+# Framework utilisé: KissJS
 
 Pour ce projet, nous avons choisi d'utiliser le framework OpenSource baptisé KissJS:
 https://kissjs.net
 
-### Bilan 
+## Bilan 
 
 Grâce à ce framework, le projet final :
 - fonctionne nativement en offline, sans nécessité de faire une PWA avec worker/manifest
 - n'a pas besoin de serveur web / node et ses milliers de fichiers dans node_modules
 - n'a pas besoin de système de build
-- n'a que 26 fichiers au total et pèse moins de 200ko
+- n'a que 27 fichiers au total et pèse moins de 200ko
 - chaque fichier a très peu de lignes de code (le plus gros fichier a 176 lignes, la plupart ont moins de 100 lignes)
 
-### Intérêt de KissJS
+## Intérêt de KissJS
 
 Le framework porte le nom "KissJS" pour "Keep It Simple Stupid Javascript", et son objectif est de garder les choses aussi simples que possible.
 
@@ -51,7 +80,7 @@ Le framework KissJS tente de faire l'inverse :
 
 La vocation du framework est qu'un développeur connaissant bien Javascript, HTML, et CSS, puisse prendre en main le framework très rapidement et sans aucune complication... et nous confirmons que cela a été possible pour nous en regardant les exemples et tutoriels du site.
 
-### Méthode de construction des UI
+## Méthode de construction des UI
 
 KissJS tente de limiter au maximum la nécessité de taper du HTML, et construit les UI **avec une simple description JSON de l'interface**.
 
@@ -72,7 +101,7 @@ Par exemple, pour créer un bouton dans une page, il suffit d'écrire :
 
 Il est bien sûr possible de personnaliser chaque composant avec du CSS, en lui appliquant une classe.
 
-### Définition des vues avec KissJS
+## Définition des vues avec KissJS
 
 En plus d'être une librairie de composants prêts à l'emploi (champs de formulaire, boutons, fenêtres, boîtes de dialoges, gestion des events, animations, etc...), KissJS intègre un **gestionnaire de vues** et un **routeur client** ultra simples.
 
@@ -97,7 +126,7 @@ kiss.router.navigateTo("view2")
 
 Le routeur client gère automatiquement la mise en cache des vues masquées quand on passe d'une vue à l'autre. Attention cependant : les id des vues doivent impérativement être uniques !
 
-### Mise en page et système de conteneurs
+## Mise en page et système de conteneurs
 
 Dans une application web, une page est un conteneur de composants, qui peuvent eux-mêmes être des conteneurs de composants.
 
@@ -202,7 +231,7 @@ kiss.app.defineViewController("view1", {
 
 A noter que le nommage des fichiers n'est pas imposé, mais cela semblait plus clair à lire dans l'arborescence, et c'est ce qui est préconisé dans le tutoriel.
 
-### Chargement des vues avec la méthode "load"
+## Chargement des vues avec la méthode "load"
 
 KissJS n'impose rien sur les noms des méthodes pour les contrôleurs des vues, à l'exception de la méthode "load".
 La méthode est exécutée automatiquement et systématiquement lorsqu'une vue est affichée (ou ré-affichée).
@@ -290,7 +319,7 @@ On voit que que pour chaque catégorie de la liste, on appelle la méthode "crea
                     if (clickedButton) {
                         return
                     }
-                    
+
                     // Stocke la catégorie actuelle
                     currentCategory = category
                     kiss.router.navigateTo('category')
