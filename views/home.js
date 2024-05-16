@@ -21,6 +21,9 @@ kiss.app.defineView({
                             placeholder: 'Exemple : Animaux, Nature, etc...',
                             fontSize: 13,
                             fieldWidth: 280,
+                            classes: {
+                                'field-label': 'field-title'
+                            },
                             events: {
                                 keyPress: function (e) {
                                     if (e.key === 'Enter') {
