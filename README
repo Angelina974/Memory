@@ -1,0 +1,301 @@
+# Projet MEMORY
+
+## Comment tester le projet ?
+
+Ouvrir le dossier, et lancer directement le fichier index.html
+
+En effet, le framework que nous avons utilisé ne nécessite aucun serveur web et fonctionne nativement en offline sans nécessité de passer par la création d'une application PWA avec Worker + Manifest.
+
+Non seulement cela fonctionne en mode local, mais en plus cela fonctionne aussi avec des URLs de type file:///
+
+## Organisation du code et des composants
+
+- /resources 
+    > contient:
+    - les ressources du projets, comme les images
+    - le fichier d'initialisation du memory (pour vous éviter de partir de zéro dans vos tests !)
+- /controllers
+    > contient les contrôleurs du jeu, pour gérer les catégories, les thèmes, et les cartes
+- /views
+    > contient:
+    - les vues du projets (ex: home.js)
+    - les contrôleurs de vues (ex: home.controller.js)
+    - les styles (ex: home.css)
+
+A noter que cette manière d'organiser le code est préconisée par le framework KissJS que nous avons utilisé.
+
+## Framework utilisé: KissJS
+
+Pour ce projet, nous avons choisi d'utiliser le framework OpenSource baptisé KissJS:
+https://kissjs.net
+
+### Bilan 
+
+Grâce à ce framework, le projet final :
+- fonctionne nativement en offline, sans nécessité de faire une PWA avec worker/manifest
+- n'a pas besoin de serveur web / node et ses milliers de fichiers dans node_modules
+- n'a pas besoin de système de build
+- n'a que 26 fichiers au total et pèse moins de 200ko
+- chaque fichier a très peu de lignes de code (le plus gros fichier a 176 lignes, la plupart ont moins de 100 lignes)
+
+### Intérêt de KissJS
+
+Le framework porte le nom "KissJS" pour "Keep It Simple Stupid Javascript", et son objectif est de garder les choses aussi simples que possible.
+
+Les frameworks les plus utilisés du marché comme React, Angular et Vue, sont assez faciles à utiliser pour des exemples simples, mais peuvent rapidement devenir assez complexes pour des projets plus grands.
+Cela a pour effet, d'augmenter la quantité de code inutilement (node_modules...), et d'introduire beaucoup de jargon et de directives très spécifiques et hors du standard W3C.
+
+Le framework KissJS tente de faire l'inverse :
+- respecter au maximum les standards W3C
+- limiter au maximum le jargon spécifique au framework
+
+La vocation du framework est qu'un développeur connaissant bien Javascript, HTML, et CSS, puisse prendre en main le framework très rapidement et sans aucune complication... et nous confirmons que cela a été possible pour nous en regardant les exemples et tutoriels du site.
+
+### Méthode de construction des UI
+
+KissJS tente de limiter au maximum la nécessité de taper du HTML, et construit les UI **avec une simple description JSON de l'interface**.
+
+KissJS génère pour nous tout le HTML et le CSS à partir de cette simple description JSON.
+Cela fait gagner énormément de temps une fois qu'on a compris les quelques composants utiles à la construction d'une page.
+
+Par exemple, pour créer un bouton dans une page, il suffit d'écrire :
+```
+{
+    type: "button,
+    text: "Veuillez cliquer ici",
+    icon: "fas fa-check", // Utilise la librairie d'icônes OpenSource Font Awesome
+    action: () => {
+        console.log("Click !")
+    }
+}
+```
+
+Il est bien sûr possible de personnaliser chaque composant avec du CSS, en lui appliquant une classe.
+
+### Définition des vues avec KissJS
+
+En plus d'être une librairie de composants prêts à l'emploi (champs de formulaire, boutons, fenêtres, boîtes de dialoges, gestion des events, animations, etc...), KissJS intègre un **gestionnaire de vues** et un **routeur client** ultra simples.
+
+Pour définir une vue, il suffit d'écrire un fichier javascript comme ceci :
+
+```
+kiss.app.defineView({
+    id: "my-view",
+    renderer: function(id) {
+        // Code la vue, dont la seule contrainte est de retourner un HTMLElement
+        // ...
+        return myHTMLElement
+    }
+})
+```
+
+Une fois que les vues de l'application ont été définies, on navigue entre les vues avec le routeur client, comme ceci :
+```
+kiss.router.navigateTo("view1")
+kiss.router.navigateTo("view2")
+```
+
+Le routeur client gère automatiquement la mise en cache des vues masquées quand on passe d'une vue à l'autre. Attention cependant : les id des vues doivent impérativement être uniques !
+
+### Mise en page et système de conteneurs
+
+Dans une application web, une page est un conteneur de composants, qui peuvent eux-mêmes être des conteneurs de composants.
+
+Par soucis de simplicité, KissJS **propose uniquement 2 types de conteneurs**, ce qui rend la composition d'une page extrêmement triviale :
+- les **blocks** : ce sont de simples "div" quand on regarde le code HTML généré
+- les **panels** : ce sont des blocks un peu plus évolués permettant de créer des fenêtres flottantes (barre de titre, icône, drag&drop...)
+
+Pour notre projet, nous n'avons utilisé que les blocks, et chaque block contient des **items**, qui sont ses enfants directs.
+
+Voici un exemple ci-dessous avec un block contenant 2 composants (un composant HTML et un bouton) avec une présentation horizontale :
+
+```
+{
+    type: "block",
+    layout: "horizontal"
+    items: [
+        {
+            type: "html",
+            html: `Hello world`
+        },
+        {
+            type: "button",
+            text: "Click me!",
+            action: () => console.log("Click!)
+        }
+    ]
+}
+```
+
+A noter que l'élément "block" (= div) étant l'élément généré par défaut, il est inutile de préciser son type dans la description JSON. Le code ci-dessous a donc le même résultat :
+```
+{
+    layout: "horizontal"
+    items: [
+        {
+            type: "html",
+            html: `Hello world`
+        },
+        {
+            type: "button",
+            text: "Click me!",
+            action: () => console.log("Click!)
+        }
+    ]
+}
+```
+
+## Contrôleurs des vues
+
+Par défaut, les contrôleurs peuvent être écrits directement dans la propriété "methods" d'un composant KissJS, comme ceci:
+
+```
+{
+    id: "myComponent",
+    layout: "horizontal",
+    items: [
+        // ... Enfants du conteneur
+    ],
+    methods: {
+        doThis() {
+
+        },
+        doThat() {
+
+        }
+    }
+}
+
+```
+
+On peut alors appeler les méthodes du composant comme cela :
+```
+const myComponent = document.getElementById("myComponent")
+myComponent.doThis()
+myComponent.doThat()
+
+```
+
+Toutefois, pour simplifier l'orgnisation du code et alléger les fichiers, il est possible aussi d'écrire les contrôleurs dans un fichier séparé. C'est ce que nous avons choisi de faire pour conserver un projet facile à lire et à maintenir :
+
+```
+// Définit la vue "view1" dans un fichier javascript, par exemple "view1.js"
+kiss.app.defineView({
+    id: "view1",
+    renderer: function(id) {
+        ...
+    }
+})
+
+// Définit le contrôleur de cette vue dans un autre fichier javascript, par exemple "view1.controller.js"
+kiss.app.defineViewController("view1", {
+    doThis() {
+
+    },
+
+    doThat() {
+
+    }
+})
+
+```
+
+A noter que le nommage des fichiers n'est pas imposé, mais cela semblait plus clair à lire dans l'arborescence, et c'est ce qui est préconisé dans le tutoriel.
+
+### Chargement des vues avec la méthode "load"
+
+KissJS n'impose rien sur les noms des méthodes pour les contrôleurs des vues, à l'exception de la méthode "load".
+La méthode est exécutée automatiquement et systématiquement lorsqu'une vue est affichée (ou ré-affichée).
+
+C'est donc dans ce contrôleur que l'on doit mettre tout ce qui concerne **la construction dynamique d'une vue**.
+Par exemple, quand on doit afficher toutes les catégories sur la home page, on utilise le code suivant dans home.controller.js :
+
+```
+load: function () {
+    // Charge les catégories dans la vue
+    const categoriesItems = memory.map(category => this.createCategory(category.name))
+    $('categories').setItems(categoriesItems)
+}
+```
+
+On voit que que pour chaque catégorie de la liste, on appelle la méthode "createCategory" de la vue, qui génère un composant catégorie complet, avec son texte, ses boutons, ses évènements, etc... :
+
+```
+    /**
+     * Template pour créer une seule catégorie
+     * 
+     * @param {string} category 
+     * @returns {object} block
+     */
+    createCategory: function (category) {
+        return createBlock({
+            class: 'category',
+            layout: 'horizontal',
+            items: [
+                // Nom de la catégorie
+                {
+                    type: 'html',
+                    html: category,
+                },
+                {
+                    type: 'spacer',
+                    flex: 1
+                },
+
+                // Bouton pour modifier la catégorie
+                {
+                    type: 'button',
+                    class: 'editCategoryButton',
+                    icon: 'fas fa-edit',
+                    action: () => {
+                        // Création d'un pannel de dialogue pour modifier le nom de la catégorie
+                        createDialog({
+                            title: 'Modifier la catégorie',
+                            type: 'input',
+                            buttonCancelText: 'Annuler',
+                            message: 'Entrez le nouveau nom de la catégorie',
+                            headerBackgroundColor: '#F7C374',
+                            animation: 'slideInUp',
+                            action: (newCategory) => {
+                                if (!newCategory) {
+                                    return createNotification('Veuillez saisir une catégorie')
+                                }
+
+                                // Appel de la fonction pour modifier la catégorie
+                                const result = updateCategory(category, newCategory)
+
+                                // Si la catégorie existe déjà, afficher une notification
+                                if (result == false) {
+                                    return createNotification('Cette catégorie existe déjà')
+                                }
+
+                                // Recharge la vue
+                                this.load()
+                            }
+                        })
+                    },
+                    events: {
+                        mouseOver: function () {
+                            this.setAnimation('jello')
+                        }
+                    }
+                }
+            ],
+
+            // Gestion du click sur la catégorie
+            events: {
+                click: function (event) {
+                    // Vérifie si le click a été fait sur un bouton. Si oui, sortir
+                    const clickedButton = event.target.closest('a-button')
+                    if (clickedButton) {
+                        return
+                    }
+                    
+                    // Stocke la catégorie actuelle
+                    currentCategory = category
+                    kiss.router.navigateTo('category')
+                }
+            }
+        })
+    },
+```
