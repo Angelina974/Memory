@@ -14,8 +14,16 @@ kiss.app.defineView({
                     id: 'homeButton',
                     icon: 'fas fa-home',
                     class: 'topbar-home-button',
-                    iconSize: 22,
-                    action: () => kiss.router.navigateTo('home')
+                    iconSize: 25,
+                    action: () => kiss.router.navigateTo('home'),
+                    events: {
+                        mouseOver: function () {
+                            this.setAnimation({
+                                name: 'bounceIn',
+                                speed: 'faster'
+                            })
+                        }
+                    }
                 },
                 {
                     type: 'spacer',
@@ -26,6 +34,14 @@ kiss.app.defineView({
                     type: 'image',
                     src: 'resources/img/logo.png',
                     class: 'topbar-logo',
+                    events: {
+                        mouseOver: function () {
+                            this.setAnimation({
+                                name: 'lightSpeedOutRight',
+                                speed: 'slower',
+                            })
+                        }
+                    }
                 },
                 {
                     type: 'spacer',

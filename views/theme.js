@@ -23,6 +23,14 @@ kiss.app.defineView({
                     action: () => {
                         currentCard = null
                         kiss.router.navigateTo('card')
+                    },
+                    events: {
+                        mouseOver: function () {
+                            this.setAnimation({
+                                name: 'bounceIn',
+                                speed: 'slow'
+                            })
+                        }
                     }
                 },
 

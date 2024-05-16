@@ -1,4 +1,14 @@
 /**
+ * Supprime une catégorie
+ * 
+ * @param {string} categoryName 
+ */
+function deleteCategory(categoryName) {
+    memory = memory.filter(category => category.name !== categoryName)
+    localStorage.setItem('memory', JSON.stringify(memory))
+}
+
+/**
  * Supprime un thème
  * 
  * @param {string} categoryName 

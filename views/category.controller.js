@@ -55,6 +55,7 @@ kiss.app.defineViewController("category", {
                 {
                     defaultConfig: {
                         class: 'themeButtons',
+                        iconSize: 16,
                         events: {
                             mouseOver: function () {
                                 this.setAnimation('jello')

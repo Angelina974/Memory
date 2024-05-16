@@ -13,7 +13,8 @@
 }
 
 .topbar-logo {
-    height: 100px;
+    height: 80px;
+    margin: 15px 0;
 }
 
 .topbar-home-button {

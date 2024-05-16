@@ -25,6 +25,14 @@ kiss.app.defineView({
                                     name: 'flipInY',
                                     speed: 'slow'
                                 })
+                            },
+                            events: {
+                                mouseOver: function () {
+                                    this.setAnimation({
+                                        name: 'bounceIn',
+                                        speed: 'slow'
+                                    })
+                                }
                             }
                         }
                     ]

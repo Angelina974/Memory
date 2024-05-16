@@ -53,6 +53,14 @@ kiss.app.defineView({
                                                 speed: 'slow'
                                             })
                                         }
+                                    },
+                                    events: {
+                                        mouseOver: function () {
+                                            this.setAnimation({
+                                                name: 'pulse',
+                                                speed: 'slow'
+                                            })
+                                        }
                                     }
                                 },
                                 // Bouton pour dire "Non" je ne me rappelle pas
@@ -75,6 +83,14 @@ kiss.app.defineView({
                                             await kiss.router.navigateTo('playRecto')
                                             $('cardPlay').setAnimation({
                                                 name: 'flipInY',
+                                                speed: 'slow'
+                                            })
+                                        }
+                                    },
+                                    events: {
+                                        mouseOver: function () {
+                                            this.setAnimation({
+                                                name: 'pulse',
                                                 speed: 'slow'
                                             })
                                         }

@@ -87,7 +87,13 @@ kiss.app.defineView({
                             icon: 'fas fa-times',
                             class: "cancel-card-button",
                             fontSize: 16,
-                            action: () => kiss.router.navigateTo('theme')
+                            iconSize: 20,
+                            action: () => kiss.router.navigateTo('theme'),
+                            events: {
+                                mouseOver: function () {
+                                    this.setAnimation('jello')
+                                }
+                            }
                         },
                         // Bouton pour enregistrer
                         {
@@ -96,7 +102,13 @@ kiss.app.defineView({
                             icon: 'fas fa-save',
                             class: "save-card-button",
                             fontSize: 16,
-                            action: () => $(id).saveOrUpdate()
+                            iconSize: 20,
+                            action: () => $(id).saveOrUpdate(),
+                            events: {
+                                mouseOver: function () {
+                                    this.setAnimation('swing')
+                                }
+                            }
                         }
                     ]
                 }

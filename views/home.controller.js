@@ -34,6 +34,7 @@ kiss.app.defineViewController("home", {
                     type: 'button',
                     class: 'editCategoryButton',
                     icon: 'fas fa-edit',
+                    iconSize: 16,
                     action: () => {
                         // Création d'un pannel de dialogue pour modifier le nom de la catégorie
                         createDialog({
@@ -66,6 +67,18 @@ kiss.app.defineViewController("home", {
                             this.setAnimation('jello')
                         }
                     }
+                },
+                {
+                    type: 'button',
+                    class: 'editCategoryButton',
+                    icon: 'fas fa-trash',
+                    iconSize: 16,
+                    action: () => this.deleteCategory(category),
+                    events: {
+                        mouseOver: function () {
+                            this.setAnimation('jello')
+                        }
+                    }
                 }
             ],
 
@@ -73,7 +86,8 @@ kiss.app.defineViewController("home", {
             events: {
                 click: function (event) {
                     // Vérifie si le click a été fait sur un bouton. Si oui, sortir
-                    const clickedButton = event.target.closest('a-button')
+                    const clickedButton = event.target.closest('.a-button')
+                    console.log(event.target)
                     if (clickedButton) {
                         return
                     }
@@ -81,6 +95,25 @@ kiss.app.defineViewController("home", {
                     currentCategory = category
                     kiss.router.navigateTo('category')
                 }
+            }
+        })
+    },
+
+    /**
+     * Supprimer une catégorie
+     * 
+     * @param {string} category 
+     */
+    deleteCategory(category) {
+        createDialog({
+            title: 'Supprimer la catégorie',
+            type: 'danger',
+            buttonCancelText: 'Annuler',
+            message: 'Etes-vous sûr de vouloir supprimer la catégorie ' + category + ' ?',
+            animation: 'slideInUp',
+            action: () => {
+                deleteCategory(category)
+                this.load()
             }
         })
     },
