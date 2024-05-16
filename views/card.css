@@ -15,10 +15,11 @@
 .cancel-card-button {
     margin: 10px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #FFF3D7;
     width: 200px;
     border: none;
+    border: rgb(255, 209, 110) 1px solid;
 }
 
 .cancel-card-button:hover {
@@ -30,15 +31,16 @@
     align-items: center;
 }
 
-
 .save-card-button {
     margin: 10px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #FFF3D7;
     width: 200px;
     border: none;
+    border: rgb(255, 209, 110) 1px solid;
 }
+
 .save-card-button:hover {
     background-color: #d2ffbd;
 }
