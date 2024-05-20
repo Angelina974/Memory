@@ -1,5 +1,6 @@
 kiss.app.defineView({
     id: 'category',
+    
     renderer: function (id) {
         return createBlock({
             id,
@@ -56,6 +57,7 @@ kiss.app.defineView({
                 {
                     class: 'themes',
                     id: "themeHtml",
+                  
                 },
                 
                 // Conteneur du bouton pour jouer (permet de le centrer)
@@ -75,11 +77,38 @@ kiss.app.defineView({
                                 speed: 'slower',
                                 repeat: 'infinite'
                             },
-                            action: () => $(id).play()
+                                action: () => {
+                                    const checkbox = document.querySelectorAll('input[type=checkbox]');
+                                    checkbox.forEach((cb) => {
+                                        if (cb.checked) {
+                                        themeChecked = cb.id;
+                                        }
+                                    });
+                                    console.log("category " + currentCategory)
+                                    localStorageSetItem(themeChecked)
+                                    $(id).play()
+                                },
+                            
                         },
-                    ]
+                        {
+                            borderStyle: "dashed",
+                            borderColor: "#dfdfdf",
+                            borderRadius: "10px",
+                            width: "500px",
+                            margin: "20px",
+                            padding: "20px",
+                            items: [
+                                {
+                                    type: "html",
+                                    html: "<h2 id='dateLevel' class='dateLevel'></h2>",
+                                    margin: "0 0 10px 0"
+                                },
+                            ]
+                         },
+                
+                    ],
                 },
-            ]
+            ],
         })
     }
 })
