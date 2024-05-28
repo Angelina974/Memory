@@ -46,12 +46,18 @@ kiss.app.defineViewController("category", {
                                     const themeChecked = cb.id;
                                     const dayArray = JSON.parse(localStorage.getItem('date')) || [];
                                     const entry = dayArray.filter(item => item.theme === themeChecked);
-                                    if (entry.length > 10) {
-                                        document.getElementById("dateLevel").innerHTML = `${themeChecked} : level MAX !`;
-                                    } else if (entry.length > 0) {
-                                        document.getElementById("dateLevel").innerHTML = `${themeChecked} : level ${entry.length}`;
+                        
+                                    if (entry.length > 0) {
+                                        const entryLength = entry[0].counter; 
+                                        if (entryLength > 10) {
+                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level MAX !`;
+                                        } else if (entryLength > 0) {
+                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level ${entryLength}`;
+                                        } else {
+                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level 1`;
+                                        }
                                     } else {
-                                        document.getElementById("dateLevel").innerHTML = `${themeChecked} : level 0`;
+                                        document.getElementById("dateLevel").innerHTML = `${themeChecked} : level 1`;
                                     }
                                 }
                             });

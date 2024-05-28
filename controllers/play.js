@@ -5,17 +5,20 @@
  * @returns {Array<Object>} Tableau de cartes
  */
 function chooseCards() {
-    // Tableau de cartes à jouer
-    let cards = []
+    let cards = [];
+    let levelDateObject = JSON.parse(localStorage.getItem('date')) || [];
+    
     memory.forEach(category => {
         category.themes.forEach(theme => {
             if (checkedThemes.includes(theme.name)) {
+                let levelDate = levelDateObject.find(item => item.theme === theme.name);
                 theme.cards.forEach(card => {
-                    cards.push(card)
-                    
-                })
+                    if (levelDate && card.level === levelDate.counter) {
+                        cards.push(card);
+                    }
+                });
             }
-        })
-    })
-    return cards
+        });
+    });
+    return cards;
 }

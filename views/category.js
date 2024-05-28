@@ -33,6 +33,14 @@ kiss.app.defineView({
                             events: {
                                 keyPress: function (e) {
                                     if (e.key === 'Enter') {
+                                        const checkbox = document.querySelectorAll('input[type=checkbox]');
+                                        checkbox.forEach((cb) => {
+                                            if (cb.checked) {
+                                            themeChecked = cb.id;
+                                            }
+                                        });
+                                        console.log("category " + currentCategory)
+                                        localStorageSetItemFirstTime(themeChecked)
                                         $(id).addNewTheme()
                                     }
                                 }
@@ -43,7 +51,11 @@ kiss.app.defineView({
                             icon: 'fas fa-plus',
                             class: 'addThemeButton',
                             iconSize: 16,
-                            action: () => $(id).addNewTheme(),
+                            action: () => {
+                                themeChecked = $('fieldTheme').getValue()
+                                localStorageSetItemFirstTime(themeChecked)
+                                $(id).addNewTheme()
+                            },
                             events: {
                                 mouseOver: function () {
                                     this.setAnimation('zoomIn')
