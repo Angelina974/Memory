@@ -38,6 +38,32 @@ kiss.app.defineViewController("category", {
                     id: theme,
                     shape: 'circle',
                     class: 'themeCheckbox',
+                    events: {
+                        onchange: function() {
+                            const checkbox = document.querySelectorAll('input[type=checkbox]');
+                            checkbox.forEach((cb) => {
+                                if (cb.checked) {
+                                    const themeChecked = cb.id;
+                                    const dayArray = JSON.parse(localStorage.getItem('date')) || [];
+                                    const entry = dayArray.filter(item => item.theme === themeChecked);
+                        
+                                    if (entry.length > 0) {
+                                        const entryLength = entry[0].counter; 
+                                        if (entryLength > 10) {
+                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level MAX !`;
+                                        } else if (entryLength > 0) {
+                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level ${entryLength}`;
+                                        } else {
+                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level 1`;
+                                        }
+                                    } else {
+                                        document.getElementById("dateLevel").innerHTML = `${themeChecked} : level 1`;
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    
                 },
 
                 // Nom du thème

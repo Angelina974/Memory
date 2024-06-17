@@ -21,11 +21,13 @@ kiss.app.defineViewController("card", {
             // Création d'une nouvelle carte
             const recto = $('fieldRecto').getValue()
             const verso = $('fieldVerso').getValue()
+            const levelCard = $('level').getValue()
+
             if (!recto || !verso) {
                 return createNotification('Veuillez remplir les deux champs')
             }
 
-            addCard(currentCategory, currentTheme, recto, verso)
+            addCard(currentCategory, currentTheme, recto, verso, levelCard)
 
             $('fieldRecto').setValue('')
             $('fieldVerso').setValue('')
@@ -36,12 +38,13 @@ kiss.app.defineViewController("card", {
             // Modification d'une carte
             const recto = $('fieldRecto').getValue()
             const verso = $('fieldVerso').getValue()
+            const levelCard = $('level').getValue()
 
             if (!recto || !verso) {
                 return createNotification('Veuillez remplir les deux champs')
             }
 
-            updateCard(currentCategory, currentTheme, currentCard.id, recto, verso)
+            updateCard(currentCategory, currentTheme, currentCard.id, recto, verso, levelCard)
 
             $('fieldRecto').setValue('')
             $('fieldVerso').setValue('')

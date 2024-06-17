@@ -24,7 +24,7 @@ function updateCategory(oldName, newName){
  * @param {string} recto 
  * @param {string} verso 
  */
-function updateCard(categoryName, themeName, id, recto, verso){
+function updateCard(categoryName, themeName, id, recto, verso, level){
 
     // Parcours toutes les catégories et les thèmes pour trouver la bonne carte et la mettre à jour
     memory.forEach(category => {
@@ -39,6 +39,7 @@ function updateCard(categoryName, themeName, id, recto, verso){
                             // Met à jour le recto et le verso de la carte
                             card.verso = verso
                             card.recto = recto
+                            card.level = level
                         }
                     })
                 }

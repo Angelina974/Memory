@@ -62,13 +62,13 @@ function addTheme(categoryName, themeName) {
  * @param {string} recto 
  * @param {string} verso 
  */
-function addCard(categoryName, themeName, recto, verso) {
+function addCard(categoryName, themeName, recto, verso, level) {
     // Crée un nouvel objet carte avec un id unique, un recto, un verso et un niveau initial de 1
     const newCard = {
         id: Math.random(),
         recto,
         verso,
-        level: 1
+        level
     }
     // Ajoute la nouvelle carte au thème
     memory.forEach(category => {

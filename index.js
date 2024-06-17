@@ -6,6 +6,8 @@ let currentCard
 let checkedThemes
 let cardsToPlay
 let cardToPlay
+let dayArray = []
+let themeChecked
 
 // Attend le chargement du DOM
 window.onload = async function () {
@@ -29,7 +31,8 @@ window.onload = async function () {
         './controllers/create',
         './controllers/update',
         './controllers/delete',
-        './controllers/play'
+        './controllers/play',
+        './controllers/date',
     ])
 
     // Charge les feuilles de styles

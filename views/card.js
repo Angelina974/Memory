@@ -1,118 +1,128 @@
 kiss.app.defineView({
-    id: 'card',
-    renderer: function (id) {
-        return createBlock({
-            id,
-            target: 'content',
-            items: [
-                // Carte
+  id: "card",
+  renderer: function (id) {
+    return createBlock({
+      id,
+      target: "content",
+      items: [
+        // Carte
+        {
+          display: "flex",
+          alignItems: "center",
+          margin: "40px 0",
+          items: [
+            // Recto de la carte
+            {
+              class: "card",
+              layout: "vertical",
+              items: [
+                // Champ pour saisir le recto
                 {
-                    display: 'flex',
-                    alignItems: 'center',
-                    margin: '40px 0',
-                    items: [
-                        // Recto de la carte
-                        {
-                            class: "card",
-                            layout: 'vertical',
-                            items: [
-                                // Champ pour saisir le recto
-                                {
-                                    id: "fieldRecto",
-                                    type: 'textarea',
-                                    label: 'Ecrire la question ici',
-                                    labelPosition: 'top',
-                                    fieldWidth: '100%',
-                                    width: '100%',
-                                    rows: 12,
-                                    fontSize: 16,
-                                },
-                                {
-                                    type: 'spacer',
-                                    flex: 1
-                                },
-                                {
-                                    type: 'html',
-                                    html: 'Recto',
-                                    labelPosition: 'bottom',
-                                    margin: '0 0 10px 0'
-                                }
-                            ]
-                        },
-                        // Verso de la carte
-                        {
-                            class: "card",
-                            layout: 'vertical',
-                            items: [
-                                // Champ pour saisir le verso
-                                {
-                                    id: "fieldVerso",
-                                    type: 'textarea',
-                                    label: 'Ecrire la réponse ici',
-                                    labelPosition: 'top',
-                                    fieldWidth: '100%',
-                                    width: '100%',
-                                    rows: 12,
-                                    fontSize: 16,
-                                },
-                                {
-                                    type: 'spacer',
-                                    flex: 1
-                                },
-                                {
-                                    type: 'html',
-                                    html: 'Verso',
-                                    labelPosition: 'bottom',
-                                    margin: '0 0 10px 0'
-                                },
-                            ]
-                        },
-                    ]
+                  id: "fieldRecto",
+                  type: "textarea",
+                  label: "Ecrire la question ici",
+                  labelPosition: "top",
+                  fieldWidth: "100%",
+                  width: "100%",
+                  rows: 12,
+                  fontSize: 16,
                 },
-
-                // Boutons de la carte
                 {
-                    layout: 'horizontal',
-                    class: "card-button-container",
-                    items: [
-                        // Block d'espacement pour pousser les boutons à droite du conteneur
-                        {
-                            type: 'spacer',
-                            flex: 1
-                        },
-                        // Bouton pour annuler
-                        {
-                            type: 'button',
-                            text: 'Annuler',
-                            icon: 'fas fa-times',
-                            class: "cancel-card-button",
-                            fontSize: 16,
-                            iconSize: 20,
-                            action: () => kiss.router.navigateTo('theme'),
-                            events: {
-                                mouseOver: function () {
-                                    this.setAnimation('jello')
-                                }
-                            }
-                        },
-                        // Bouton pour enregistrer
-                        {
-                            type: 'button',
-                            text: 'Enregistrer',
-                            icon: 'fas fa-save',
-                            class: "save-card-button",
-                            fontSize: 16,
-                            iconSize: 20,
-                            action: () => $(id).saveOrUpdate(),
-                            events: {
-                                mouseOver: function () {
-                                    this.setAnimation('swing')
-                                }
-                            }
-                        }
-                    ]
-                }
-            ]
-        })
-    }
-})
+                  type: "spacer",
+                  flex: 1,
+                },
+                {
+                  type: "html",
+                  html: "Recto",
+                  labelPosition: "bottom",
+                  margin: "0 0 10px 0",
+                },
+              ],
+            },
+            // Verso de la carte
+            {
+              class: "card",
+              layout: "vertical",
+              items: [
+                // Champ pour saisir le verso
+                {
+                  id: "fieldVerso",
+                  type: "textarea",
+                  label: "Ecrire la réponse ici",
+                  labelPosition: "top",
+                  fieldWidth: "100%",
+                  width: "100%",
+                  rows: 12,
+                  fontSize: 16,
+                },
+                {
+                  type: "spacer",
+                  flex: 1,
+                },
+                {
+                  type: "html",
+                  html: "Verso",
+                  labelPosition: "bottom",
+                  margin: "0 0 10px 0",
+                },
+              ],
+            },
+          ],
+        },
+
+        // Boutons de la carte
+        {
+          layout: "horizontal",
+          class: "card-button-container",
+          items: [
+            // Block d'espacement pour pousser les boutons à droite du conteneur
+            {
+              type: "spacer",
+              flex: 1,
+            },
+            //Level pour les cartes
+            {
+                type: "rating",
+                id: "level",
+                label: "Niveau",
+                shape: "star",
+                iconColorOn: "rgb(255, 209, 110)",
+                value: 1,
+                max: 10,
+            },
+            // Bouton pour annuler
+            {
+              type: "button",
+              text: "Annuler",
+              icon: "fas fa-times",
+              class: "cancel-card-button",
+              fontSize: 16,
+              iconSize: 20,
+              action: () => kiss.router.navigateTo("theme"),
+              events: {
+                mouseOver: function () {
+                  this.setAnimation("jello");
+                },
+              },
+            },
+            // Bouton pour enregistrer
+            {
+              type: "button",
+              text: "Enregistrer",
+              icon: "fas fa-save",
+              class: "save-card-button",
+              fontSize: 16,
+              iconSize: 20,
+              action: () => $(id).saveOrUpdate(),
+              events: {
+                mouseOver: function () {
+                  this.setAnimation("swing");
+                },
+              },
+            },
+          ],
+        },
+      ],
+    });
+  },
+});
