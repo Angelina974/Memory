@@ -33,6 +33,7 @@ window.onload = async function () {
         './controllers/delete',
         './controllers/play',
         './controllers/date',
+        './controllers/notification'
     ])
 
     // Charge les feuilles de styles

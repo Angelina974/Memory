@@ -40,29 +40,35 @@ kiss.app.defineViewController("category", {
                     class: 'themeCheckbox',
                     events: {
                         onchange: function() {
-                            const checkbox = document.querySelectorAll('input[type=checkbox]');
-                            checkbox.forEach((cb) => {
+                            const checkboxes = document.querySelectorAll('input[type=checkbox]');
+                            const dayArray = JSON.parse(localStorage.getItem('date')) || [];
+                            let levelMessage = "";
+                        
+                            checkboxes.forEach((cb) => {
                                 if (cb.checked) {
                                     const themeChecked = cb.id;
-                                    const dayArray = JSON.parse(localStorage.getItem('date')) || [];
                                     const entry = dayArray.filter(item => item.theme === themeChecked);
                         
                                     if (entry.length > 0) {
-                                        const entryLength = entry[0].counter; 
+                                        const entryLength = entry[0].actualDay;
                                         if (entryLength > 10) {
-                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level MAX !`;
+                                            levelMessage += `${themeChecked} : level MAX!<br>`;
                                         } else if (entryLength > 0) {
-                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level ${entryLength}`;
+                                            levelMessage += `${themeChecked} : jour n°${entryLength}<br>`;
                                         } else {
-                                            document.getElementById("dateLevel").innerHTML = `${themeChecked} : level 1`;
+                                            levelMessage += `${themeChecked} : jour n°1<br>`;
                                         }
                                     } else {
-                                        document.getElementById("dateLevel").innerHTML = `${themeChecked} : level 1`;
+                                        levelMessage += `${themeChecked} : jour n°1<br>`;
                                     }
                                 }
                             });
+                        
+                            document.getElementById("dateLevel").innerHTML = levelMessage;
                         }
-                    }
+                        
+                        }
+                    
                     
                 },
 
@@ -182,7 +188,7 @@ kiss.app.defineViewController("category", {
      */
     play() {
         const checkboxes = document.querySelectorAll('a-checkbox')
-
+        const chooseNumberCard = document.getElementById("cardsNumber").getValue();
         // Récupère les thèmes cocher
         checkedThemes = Array.from(checkboxes).filter(checkbox => checkbox.getValue()).map(checkbox => checkbox.id)
         if (checkedThemes.length === 0) {
@@ -190,7 +196,7 @@ kiss.app.defineViewController("category", {
         }
 
         // Choisit les cartes à jouer à partir des thèmes cochés
-        cardsToPlay = chooseCards()
+        cardsToPlay = chooseCards(chooseNumberCard)
         if (cardsToPlay.length === 0) {
             return createNotification('Il n\'y a pas de carte à jouer')
         }

@@ -19,7 +19,8 @@ kiss.app.defineView({
                     display: 'flex',
                     alignItems: 'center',
                     margin : '20px 10px 10px 25px',
-                    items: [{
+                    items: [
+                        {
                             id: "fieldTheme",
                             type: 'text',
                             label: 'Ajouter un thème',
@@ -72,6 +73,7 @@ kiss.app.defineView({
                   
                 },
                 
+                
                 // Conteneur du bouton pour jouer (permet de le centrer)
                 {
                     class: 'playButtonContainer',
@@ -96,11 +98,12 @@ kiss.app.defineView({
                                         themeChecked = cb.id;
                                         }
                                     });
-                                    console.log("category " + currentCategory)
                                     localStorageSetItem(themeChecked)
+                                    console.log("category " + currentCategory)
                                     $(id).play()
                                 },
                             
+                                
                         },
                         {
                             borderStyle: "dashed",
@@ -110,16 +113,23 @@ kiss.app.defineView({
                             margin: "20px",
                             padding: "20px",
                             items: [
+                                
                                 {
                                     type: "html",
                                     html: "<h2 id='dateLevel' class='dateLevel'></h2>",
                                     margin: "0 0 10px 0"
                                 },
+                                {
+                                    type: "number",
+                                    id: "cardsNumber",
+                                },
                             ]
                          },
                 
                     ],
+                    
                 },
+                
             ],
         })
     }

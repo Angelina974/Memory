@@ -37,7 +37,7 @@ kiss.app.defineView({
                     events: {
                         mouseOver: function () {
                             this.setAnimation({
-                                name: 'lightSpeedOutRight',
+                                name: 'tada',
                                 speed: 'slower',
                             })
                         }
@@ -46,7 +46,22 @@ kiss.app.defineView({
                 {
                     type: 'spacer',
                     flex: 1
-                }
+                },
+                // {
+                //     type: "button",
+                //     icon: "fas fa-bell",
+                //     iconSize: 25,
+                //     class: 'topbar-home-button',
+                //     events: { 
+                //         mouseOver: function () {
+                //             this.setAnimation({
+                //                 name: 'bounceIn',
+                //                 speed: 'faster'
+                //             })
+                //         },
+                //         onclick: () => notificationEnabled()
+                //     },
+                // },
             ],
 
             // Cacher le bouton home si on est sur une page de jeu

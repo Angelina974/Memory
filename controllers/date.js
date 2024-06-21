@@ -14,24 +14,29 @@ function localStorageSetItem(theme) {
 
     let dayArray = JSON.parse(localStorage.getItem('date')) || [];
 
+    let actualDay;
+
     let latestEntry = dayArray.filter(item => item.theme === theme).pop();
 
     let difference = latestEntry ? calculateDays(latestEntry.currentDay, currentDay) : null;
-
     if (difference === null) {
-        let objectDate = { theme, currentDay, counter: 1 }; 
+        let objectDate = { theme, currentDay, actualDay: 0, counter: 1 }; 
         dayArray.push(objectDate);
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Nouvelle entrée: ${JSON.stringify(objectDate)}`);
     } else if (difference >= 1) {
         latestEntry.counter += 1;
-        latestEntry.currentDay = currentDay;
+        latestEntry.actualDay = difference;
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Mise à jour: ${JSON.stringify(latestEntry)}`);
     } else {
         console.log("Déjà enregistré pour la même date");
     }
+    
 }
+    
+
+
 
 function localStorageSetItemFirstTime(theme) {
     // Récupérer la date actuelle

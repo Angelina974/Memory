@@ -40,6 +40,7 @@ kiss.app.defineView({
 
                                         // Supprime la carte de la liste des cartes à jouer
                                         cardsToPlay.shift()
+                                        updateCardLevel(currentCategory, themeChecked, cardToPlay.id, nextLevel)
 
                                         // Si c'est la dernière carte, retourne à la catégorie
                                         if (cardsToPlay.length === 0) {
@@ -68,9 +69,9 @@ kiss.app.defineView({
                                     icon: 'fas fa-times',
                                     iconColor: 'red',
                                     action: async () => {
-                                        // Passe le niveau de la carte à 1
 
                                         // Supprime la carte de la liste des cartes à jouer
+                                        updateCardLevel(currentCategory, themeChecked, cardToPlay.id, 1)
                                         cardsToPlay.shift()
 
                                         // Si c'est la dernière carte, retourne à la catégorie
