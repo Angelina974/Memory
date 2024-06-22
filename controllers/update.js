@@ -57,20 +57,20 @@ function updateCard(categoryName, themeName, id, recto, verso, level){
  * @param {string} id 
  * @param {number} level 
  */
-function updateCardLevel(categoryName, themeName, id, level){
-    memory.forEach(category => {
-        if (category.name === categoryName) {
-            category.themes.forEach(theme => {
-                if (theme.name === themeName) {
-                    theme.cards.forEach(card => {
-                        if(card.id === id){
-                            // Met à jour le niveau de la carte
-                            card.level = level
-                        }
-                    })
-                }
-            })
-        }
-    })
-    localStorage.setItem('memory', JSON.stringify(memory))
-}
+// function updateCardLevel(categoryName, themeName, id, level){
+//     memory.forEach(category => {
+//         if (category.name === categoryName) {
+//             category.themes.forEach(theme => {
+//                 if (theme.name === themeName) {
+//                     theme.cards.forEach(card => {
+//                         if(card.id === id){
+//                             // Met à jour le niveau de la carte
+//                             card.level = level
+//                         }
+//                     })
+//                 }
+//             })
+//         }
+//     })
+//     localStorage.setItem('memory', JSON.stringify(memory))
+// }

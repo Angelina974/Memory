@@ -37,7 +37,6 @@ kiss.app.defineView({
                                         // Incrémente le niveau de la carte
                                         const currentCardLevel = cardToPlay.level || 1
                                         const nextLevel = currentCardLevel + 1
-                                        updateCardLevel(currentCategory, currentTheme, cardToPlay.id, nextLevel)
 
                                         // Supprime la carte de la liste des cartes à jouer
                                         cardsToPlay.shift()
@@ -70,7 +69,6 @@ kiss.app.defineView({
                                     iconColor: 'red',
                                     action: async () => {
                                         // Passe le niveau de la carte à 1
-                                        updateCardLevel(currentCategory, currentTheme, cardToPlay.id, 1)
 
                                         // Supprime la carte de la liste des cartes à jouer
                                         cardsToPlay.shift()
