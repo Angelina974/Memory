@@ -67,7 +67,6 @@ function updateCardLevel(categoryName, themeName, id, level) {
                         if(card.id === id){
                             // Met à jour le niveau de la carte
                             card.level = level
-                            console.log("update level card ", card, card.level)
                         }
                     })
                 }

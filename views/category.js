@@ -15,7 +15,7 @@ kiss.app.defineView({
 
                 // Zone pour ajouter un nouveau thème
                 {
-                    class: "theme",
+                    class: "themeAdd",
                     display: 'flex',
                     alignItems: 'center',
                     margin : '20px 10px 10px 25px',
@@ -35,17 +35,35 @@ kiss.app.defineView({
                                 keyPress: function (e) {
                                     if (e.key === 'Enter') {
                                         const checkbox = document.querySelectorAll('input[type=checkbox]');
+                                        const nbrCard = $('nbrCard').getValue();
+                                        const nbrLevel = $('nbrLevel').getValue();
+                                        console.log(nbrCard, nbrLevel)
                                         checkbox.forEach((cb) => {
                                             if (cb.checked) {
                                             themeChecked = cb.id;
                                             }
                                         });
                                         console.log("category " + currentCategory)
-                                        localStorageSetItemFirstTime(themeChecked)
+                                        localStorageSetItemFirstTime(themeChecked, nbrCard, nbrLevel)
                                         $(id).addNewTheme()
                                     }
                                 }
                             }
+                        },
+                        
+                        {
+                            type: "number",
+                            class: "inputTheme",
+                            placeholder: "nombre de cartes..",
+                            value: 1,
+                            id: "nbrCard",
+                        },
+                        {
+                            type: "number",
+                            class: "inputTheme",
+                            placeholder: "nombre de level..",
+                            value: 5,
+                            id: "nbrLevel",
                         },
                         {
                             type: 'button',
@@ -54,7 +72,10 @@ kiss.app.defineView({
                             iconSize: 16,
                             action: () => {
                                 themeChecked = $('fieldTheme').getValue()
-                                localStorageSetItemFirstTime(themeChecked)
+                                const nbrCard = $('nbrCard').getValue();
+                                const nbrLevel = $('nbrLevel').getValue();
+                                console.log(nbrCard, nbrLevel)
+                                localStorageSetItemFirstTime(themeChecked, nbrCard, nbrLevel)
                                 $(id).addNewTheme()
                             },
                             events: {
@@ -62,9 +83,10 @@ kiss.app.defineView({
                                     this.setAnimation('zoomIn')
                                 }
                             }
-                        }
+                        },
                     ]
                 },
+                
 
                 // Zone pour afficher les thèmes de la catégorie
                 {
@@ -101,6 +123,7 @@ kiss.app.defineView({
                                     localStorageSetItem(themeChecked)
                                     console.log("category " + currentCategory)
                                     $(id).play()
+
                                 },
                             
                                 
@@ -118,10 +141,6 @@ kiss.app.defineView({
                                     type: "html",
                                     html: "<h2 id='dateLevel' class='dateLevel'></h2>",
                                     margin: "0 0 10px 0"
-                                },
-                                {
-                                    type: "number",
-                                    id: "cardsNumber",
                                 },
                             ]
                          },

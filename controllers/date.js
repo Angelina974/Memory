@@ -14,19 +14,17 @@ function localStorageSetItem(theme) {
 
     let dayArray = JSON.parse(localStorage.getItem('date')) || [];
 
-    let actualDay;
-
     let latestEntry = dayArray.filter(item => item.theme === theme).pop();
 
     let difference = latestEntry ? calculateDays(latestEntry.currentDay, currentDay) : null;
     if (difference === null) {
-        let objectDate = { theme, currentDay, actualDay: 0, counter: 1 }; 
+        let objectDate = { theme, currentDay, counter: 1 }; 
         dayArray.push(objectDate);
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Nouvelle entrée: ${JSON.stringify(objectDate)}`);
-    } else if (difference >= 1) {
+    } else if (difference = 1) {
+        //tout les jours niveau 1
         latestEntry.counter += 1;
-        latestEntry.actualDay = difference;
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Mise à jour: ${JSON.stringify(latestEntry)}`);
     } else {
@@ -38,8 +36,9 @@ function localStorageSetItem(theme) {
 
 
 
-function localStorageSetItemFirstTime(theme) {
+function localStorageSetItemFirstTime(theme, nbrCard, nbrLevel) {
     // Récupérer la date actuelle
+    console.log(nbrCard, nbrLevel)
     var d = new Date();
     d.setDate(d.getDate() - 1);
         month = '' + (d.getMonth() + 1),
@@ -54,7 +53,6 @@ function localStorageSetItemFirstTime(theme) {
 
     let currentDay = [year, month, day].join('-');
 
-
     let dayArray = JSON.parse(localStorage.getItem('date')) || [];
 
     let latestEntry = dayArray.filter(item => item.theme === theme).pop();
@@ -62,13 +60,12 @@ function localStorageSetItemFirstTime(theme) {
     let difference = latestEntry ? calculateDays(latestEntry.currentDay, currentDay) : null;
 
     if (difference === null) {
-        let objectDate = { theme, currentDay, counter: 0 }; 
+        let objectDate = { theme, currentDay, counter: 0, nbrCard, nbrLevel }; 
         dayArray.push(objectDate);
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Nouvelle entrée: ${JSON.stringify(objectDate)}`);
-    } else if (difference >= 1) {
+    } else if (difference = 1) {
         latestEntry.counter += 1;
-        latestEntry.currentDay = currentDay;
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Mise à jour: ${JSON.stringify(latestEntry)}`);
     } else {
@@ -76,7 +73,7 @@ function localStorageSetItemFirstTime(theme) {
     }
 }
 
-
+//Calcul de jours
 function calculateDays(date1, date2) {
     let dateParts1 = date1.split('-');
     let dateParts2 = date2.split('-');
@@ -98,3 +95,4 @@ function calculateDays(date1, date2) {
 
     return differenceEnJours;
 }
+
