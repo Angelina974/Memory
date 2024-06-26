@@ -18,11 +18,11 @@ function localStorageSetItem(theme) {
 
     let difference = latestEntry ? calculateDays(latestEntry.currentDay, currentDay) : null;
     if (difference === null) {
-        let objectDate = { theme, currentDay, counter: 1 }; 
+        let objectDate = { theme, currentDay, counter: 0, nbrCard: 2, nbrLevel: 5}; 
         dayArray.push(objectDate);
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Nouvelle entrée: ${JSON.stringify(objectDate)}`);
-    } else if (difference = 1) {
+    } else if (difference > 1) {
         //tout les jours niveau 1
         latestEntry.counter += 1;
         localStorage.setItem('date', JSON.stringify(dayArray));
@@ -64,7 +64,7 @@ function localStorageSetItemFirstTime(theme, nbrCard, nbrLevel) {
         dayArray.push(objectDate);
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Nouvelle entrée: ${JSON.stringify(objectDate)}`);
-    } else if (difference = 1) {
+    } else if (difference > 1) {
         latestEntry.counter += 1;
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Mise à jour: ${JSON.stringify(latestEntry)}`);

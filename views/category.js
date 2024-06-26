@@ -142,6 +142,7 @@ kiss.app.defineView({
                                     html: "<h2 id='dateLevel' class='dateLevel'></h2>",
                                     margin: "0 0 10px 0"
                                 },
+                                
                             ]
                          },
                 
