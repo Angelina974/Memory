@@ -80,16 +80,6 @@ kiss.app.defineView({
               type: "spacer",
               flex: 1,
             },
-            //Level pour les cartes
-            {
-                type: "rating",
-                id: "level",
-                label: "Niveau",
-                shape: "star",
-                iconColorOn: "rgb(255, 209, 110)",
-                value: 1,
-                max: 10,
-            },
             // Bouton pour annuler
             {
               type: "button",

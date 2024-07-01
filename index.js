@@ -28,7 +28,6 @@ window.onload = async function () {
         './views/theme.controller',
         './views/topBar',
         './views/start',
-        './views/parameters',
 
         // Charge les contrôleurs du jeu
         './controllers/create',
@@ -36,7 +35,6 @@ window.onload = async function () {
         './controllers/delete',
         './controllers/play',
         './controllers/date',
-        './controllers/notification'
     ])
 
     // Charge les feuilles de styles

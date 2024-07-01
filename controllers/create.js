@@ -68,7 +68,7 @@ function addCard(categoryName, themeName, recto, verso, level) {
         id: Math.random(),
         recto,
         verso,
-        level
+        level:  1
     }
     // Ajoute la nouvelle carte au thème
     memory.forEach(category => {

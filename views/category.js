@@ -51,10 +51,20 @@ kiss.app.defineView({
                         {
                             type: "number",
                             class: "inputTheme",
-                            label: "Nombre de cartes par jours",
+                            label: "Nombre de cartes par jour",
                             placeholder: "nombre de cartes..",
+                            labelPosition: 'top',
+                            fontSize: 13,
+                            fieldWidth: 280,
+                            classes: {
+                                'field-label': 'field-title'
+                            },
                             value: 1,
                             id: "nbrCard",
+                        },
+                        {
+                            type: "spacer",
+                            flex: 1
                         },
                         {
                             type: 'button',

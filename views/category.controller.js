@@ -39,23 +39,22 @@ kiss.app.defineViewController("category", {
                     shape: 'circle',
                     class: 'themeCheckbox',
                     events: {
-                        onchange: function() {
+                        onchange: function () {
                             const checkboxes = document.querySelectorAll('input[type=checkbox]');
                             const dayArray = JSON.parse(localStorage.getItem('date')) || [];
                             let levelMessage = "";
-                        
+
                             checkboxes.forEach((cb) => {
                                 if (cb.checked) {
                                     const themeChecked = cb.id;
-                                    
+
                                     memory.forEach(category => {
                                         category.themes.forEach(theme => {
                                             if (theme.name === themeChecked) {
                                                 let entry = dayArray.find(item => item.theme === theme.name);
                                                 if (entry) {
                                                     levelMessage += `${themeChecked} : jour n°${entry.counter}<br>`;
-                                                }
-                                                else {
+                                                } else {
                                                     levelMessage += `${themeChecked} : jour n°0<br>`;
                                                 }
                                             }
@@ -63,13 +62,12 @@ kiss.app.defineViewController("category", {
                                     });
                                 }
                             })
-                        
-                            document.getElementById("dateLevel").innerHTML = levelMessage;
+
+                            const dateLevelElement = $("dateLevel")
+                            if (dateLevelElement) dateLevelElement.innerHTML = levelMessage
                         }
-                        
-                        }
-                    
-                    
+                    }
+
                 },
 
                 // Nom du thème
@@ -114,7 +112,7 @@ kiss.app.defineViewController("category", {
             events: {
                 mouseOver: function () {
                     this.style.backgroundColor = '#e5e5e5'
-                    
+
                 },
                 mouseOut: function () {
                     this.style.backgroundColor = '#f5f5f5'
@@ -188,19 +186,18 @@ kiss.app.defineViewController("category", {
      */
     play() {
         const checkboxes = document.querySelectorAll('a-checkbox')
-        
+
         // Récupère les thèmes cocher
         checkedThemes = Array.from(checkboxes).filter(checkbox => checkbox.getValue()).map(checkbox => checkbox.id)
         if (checkedThemes.length === 0) {
             return createNotification('Veuillez sélectionner au moins un thème')
         }
 
-        let checkedThemesString =  JSON.stringify(checkedThemes);
+        let checkedThemesString = JSON.stringify(checkedThemes);
         if (arrayPlayedOnce.includes(checkedThemesString)) {
             console.log("already played");
             return createNotification("Vous avez déjà joué aujourd'hui")
-        }
-        else {
+        } else {
             console.log(arrayPlayedOnce);
             arrayPlayedOnce.push(checkedThemesString);
 
