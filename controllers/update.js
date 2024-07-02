@@ -58,7 +58,6 @@ function updateCard(categoryName, themeName, id, recto, verso, level){
  * @param {number} level 
  */
 function updateCardLevel(categoryName, themeName, id, level) {
-    console.log("category ", categoryName, "theme ", themeName, "id", id, "level", level);
     memory.forEach(category => {
         if (category.name === categoryName) {
             category.themes.forEach(theme => {

@@ -8,7 +8,8 @@ let cardsToPlay
 let cardToPlay
 let dayArray = []
 let themeChecked
-let numberClicked = 0;
+let arrayPlayedOnce = [];
+let alreadyPlayedDate = [];
 
 // Attend le chargement du DOM
 window.onload = async function () {

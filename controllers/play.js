@@ -5,11 +5,8 @@
  * @returns {Array<Object>} Tableau de cartes
  */
 
-let numberClicked = 0;
-
-function chooseCards(cardNumber) {
-
-    if (numberClicked < 1) {
+function chooseCards() {
+    
     let cards = [];
     let cardsLevelOne = [];
     let levelDateObject = JSON.parse(localStorage.getItem('date')) || [];
@@ -19,9 +16,13 @@ function chooseCards(cardNumber) {
         category.themes.forEach(theme => {
             if (checkedThemes.includes(theme.name)) {
                 levelDate = levelDateObject.find(item => item.theme === theme.name);
+                if (!levelDate) {
+                    return;
+                }
+
                 theme.cards.forEach(card => {
-                    console.log(card, levelDate.nbrCard);
                     if (Math.pow(2, (card.level - 1)) === levelDate.counter) {
+                        console.log(card);
                         cards.push(card);
                     }
                     if (card.level === 1) {
@@ -32,27 +33,20 @@ function chooseCards(cardNumber) {
         });
     });
 
-    // Call chooseNumberOneCard after collecting all level 1 cards
+    if (cardsLevelOne.length === 0) {
+        return [];
+    }
+
     chooseNumberOneCard(cardsLevelOne, cards, levelDate);
     
-    console.log(cards);
-    numberClicked += 1;
-
     return cards;
-    }
-    else {
-        new Notification("Vous avez déjà joué aujourd'hui !");
-    }
-    
 }
 
 function chooseNumberOneCard(cardArray, cards, numbersOfCards) {
-    console.log(cardArray);
     for (let i = 0; i < numbersOfCards.nbrCard; i++) {
-        let lengthCard = cardArray.length;
-        console.log("length ", lengthCard);
-        let number = Math.floor(Math.random() * lengthCard);
-        console.log("nombre aléatoire ", number);
+        if (cardArray.length === 0) break;
+
+        let number = Math.floor(Math.random() * cardArray.length);
         cards.push(cardArray[number]);
         cardArray.splice(number, 1);
     }

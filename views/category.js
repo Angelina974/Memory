@@ -36,15 +36,12 @@ kiss.app.defineView({
                                     if (e.key === 'Enter') {
                                         const checkbox = document.querySelectorAll('input[type=checkbox]');
                                         const nbrCard = $('nbrCard').getValue();
-                                        const nbrLevel = $('nbrLevel').getValue();
-                                        console.log(nbrCard, nbrLevel)
                                         checkbox.forEach((cb) => {
                                             if (cb.checked) {
                                             themeChecked = cb.id;
                                             }
                                         });
-                                        console.log("category " + currentCategory)
-                                        localStorageSetItemFirstTime(themeChecked, nbrCard, nbrLevel)
+                                        localStorageSetItemFirstTime(themeChecked, nbrCard)
                                         $(id).addNewTheme()
                                     }
                                 }
@@ -54,16 +51,10 @@ kiss.app.defineView({
                         {
                             type: "number",
                             class: "inputTheme",
+                            label: "Nombre de cartes par jours",
                             placeholder: "nombre de cartes..",
                             value: 1,
                             id: "nbrCard",
-                        },
-                        {
-                            type: "number",
-                            class: "inputTheme",
-                            placeholder: "nombre de level..",
-                            value: 5,
-                            id: "nbrLevel",
                         },
                         {
                             type: 'button',
@@ -73,9 +64,7 @@ kiss.app.defineView({
                             action: () => {
                                 themeChecked = $('fieldTheme').getValue()
                                 const nbrCard = $('nbrCard').getValue();
-                                const nbrLevel = $('nbrLevel').getValue();
-                                console.log(nbrCard, nbrLevel)
-                                localStorageSetItemFirstTime(themeChecked, nbrCard, nbrLevel)
+                                localStorageSetItemFirstTime(themeChecked, nbrCard)
                                 $(id).addNewTheme()
                             },
                             events: {
@@ -121,7 +110,6 @@ kiss.app.defineView({
                                         }
                                     });
                                     localStorageSetItem(themeChecked)
-                                    console.log("category " + currentCategory)
                                     $(id).play()
 
                                 },

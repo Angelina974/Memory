@@ -188,17 +188,29 @@ kiss.app.defineViewController("category", {
      */
     play() {
         const checkboxes = document.querySelectorAll('a-checkbox')
+        
         // Récupère les thèmes cocher
         checkedThemes = Array.from(checkboxes).filter(checkbox => checkbox.getValue()).map(checkbox => checkbox.id)
         if (checkedThemes.length === 0) {
             return createNotification('Veuillez sélectionner au moins un thème')
         }
-        // Choisit les cartes à jouer à partir des thèmes cochés
-        cardsToPlay = chooseCards()
-        if (cardsToPlay.length === 0) {
-            return createNotification('Il n\'y a pas de carte à jouer')
+
+        let checkedThemesString =  JSON.stringify(checkedThemes);
+        if (arrayPlayedOnce.includes(checkedThemesString)) {
+            console.log("already played");
+            return createNotification("Vous avez déjà joué aujourd'hui")
         }
-        // Affiche le recto de la 1ère carte à jouer
-        kiss.router.navigateTo('playRecto')
+        else {
+            console.log(arrayPlayedOnce);
+            arrayPlayedOnce.push(checkedThemesString);
+
+            // Choisit les cartes à jouer à partir des thèmes cochés
+            cardsToPlay = chooseCards()
+            if (cardsToPlay.length === 0) {
+                return createNotification('Il n\'y a pas de carte à jouer')
+            }
+            // Affiche le recto de la 1ère carte à jouer
+            kiss.router.navigateTo('playRecto')
+        }
     }
 })

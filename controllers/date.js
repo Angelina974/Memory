@@ -18,13 +18,16 @@ function localStorageSetItem(theme) {
 
     let difference = latestEntry ? calculateDays(latestEntry.currentDay, currentDay) : null;
     if (difference === null) {
-        let objectDate = { theme, currentDay, counter: 0, nbrCard: 2, nbrLevel: 5}; 
+        let objectDate = { theme, currentDay, counter: 0, nbrCard: 2}; 
         dayArray.push(objectDate);
         localStorage.setItem('date', JSON.stringify(dayArray));
-        console.log(`Nouvelle entrée: ${JSON.stringify(objectDate)}`);
     } else if (difference > 1) {
         //tout les jours niveau 1
         latestEntry.counter += 1;
+
+        arrayPlayedOnce.filter(item => item !== theme);
+        console.log(arrayPlayedOnce);
+
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Mise à jour: ${JSON.stringify(latestEntry)}`);
     } else {
@@ -36,9 +39,9 @@ function localStorageSetItem(theme) {
 
 
 
-function localStorageSetItemFirstTime(theme, nbrCard, nbrLevel) {
+function localStorageSetItemFirstTime(theme, nbrCard) {
     // Récupérer la date actuelle
-    console.log(nbrCard, nbrLevel)
+    console.log(nbrCard)
     var d = new Date();
     d.setDate(d.getDate() - 1);
         month = '' + (d.getMonth() + 1),
@@ -60,12 +63,14 @@ function localStorageSetItemFirstTime(theme, nbrCard, nbrLevel) {
     let difference = latestEntry ? calculateDays(latestEntry.currentDay, currentDay) : null;
 
     if (difference === null) {
-        let objectDate = { theme, currentDay, counter: 0, nbrCard, nbrLevel }; 
+        let objectDate = { theme, currentDay, counter: 0, nbrCard}; 
         dayArray.push(objectDate);
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Nouvelle entrée: ${JSON.stringify(objectDate)}`);
     } else if (difference > 1) {
         latestEntry.counter += 1;
+        arrayPlayedOnce.filter(item => item !== theme);
+        console.log(arrayPlayedOnce);
         localStorage.setItem('date', JSON.stringify(dayArray));
         console.log(`Mise à jour: ${JSON.stringify(latestEntry)}`);
     } else {
